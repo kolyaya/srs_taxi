@@ -1,0 +1,80 @@
+\subsection{Заказы}
+
+  \subsubsection{Обработка снятия водителя с заказа} \label{remove_driver_from_order}
+   		
+   	\sr{При поступлении сообщения о снятии водителя с заказа сервер должен выполнять действия описанные в ALG - \ref{remove_driver_from_order_alg}.}\\
+    	PRIOR: CRITICAL\\
+
+    \sr{Действия в ALG - \ref{remove_driver_from_order_alg} описанны в таблице \ref{remove_driver_from_order_actions_table}.}\\
+    	PRIOR: CRITICAL\\
+
+  	\begin{alg} [Алгоритм обработки снятия водителя с заказа] \label{remove_driver_from_order_alg} \mbox{}\\
+
+  	1. При поступлении запроса на открепление водителя от заказа, сервер выполняет следующий алгоритм:
+  		1.1 открепление
+  		1.2 Уведомить водилу
+  		1.3 
+
+  	2. Сервер отправляет водителю уведомление о том что заказ снят.
+
+  	\end{alg}
+
+  	\begin{table} [h]
+           \begin{center}
+           \caption {Действия сервера при снятии водителя с заказа.}
+           \label{remove_driver_from_order_actions_table}
+           \setlength{\extrarowheight}{2mm}
+           \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+               \hline \textbf{ID} & \textbf{Название}&\textbf{Действие сервера} \\ [2mm]
+
+               \hline \srvact{test}{} & Открепление водителя. & Сервер открепляет водителя от заказа. \\ [2mm]
+               \hline \srvact{test2}{} & Уведомление об снятии.  & Сервер посылает водителю сообщение об снятии его с заказа. Так же вместе с сообщением сервер передает причину снятия.\\ [2mm]
+               \hline \srvact{test3}{} & Проверка статуса заказа.  & Сервер проверяет статус заказа. Если у заказа статус "Отменен", то ответ положительный, если нет - отрицательный.\\ [2mm]
+
+               \hline
+           \end{tabular}
+           \end{center}
+        \end{table}
+
+  \subsubsection{Обработка отмены заказа}
+
+    	\sr{При поступлении сообщения об отмене заказа сервер должен выполнять действия описанные в ALG - \ref{cancel_order_alg}.}\\
+    	PRIOR: CRITICAL\\
+
+    	\sr{Действия в ALG - \ref{cancel_order_alg} описанны в таблице \ref{cancel_order_actions_table}.}\\
+    	PRIOR: CRITICAL\\
+
+    	\begin{alg}[Алгоритм обработки отмены заказа]\label{cancel_order_alg} \mbox{}\\
+
+    		\begin{enumerate}
+    			\item Если на заказ не назначен водитель, то сервер:
+    			\begin{enumerate}
+    				\item Выполняет SRVACT-\ref{act_order_cancel_status}.
+    				\item Выполняет SRVACT-\ref{act_cancel_order_distribution}.
+    			\end{enumerate}
+    			\item Если на заказ назначен водитель, то сервер:
+    			\begin{enumerate}
+    				\item Выполняет SRVACT-\ref{act_order_cancel_status}.
+    				\item Выполняет ALG - \ref{remove_driver_from_order_alg}.
+    			\end{enumerate}
+    		\end{enumerate}
+
+    	\end{alg}
+
+    	\begin{table} [h]
+           \begin{center}
+           \caption {Действия сервера при отмене заказа.}
+           \label{cancel_order_actions_table}
+           \setlength{\extrarowheight}{2mm}
+           \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+               \hline \textbf{ID} & \textbf{Название}&\textbf{Действие сервера} \\ [2mm]
+
+               \hline \srvact{act_order_cancel_status}{} & Присвоение статуса "Отмена" & Сервер присваивает заказу статус "Отменен". \\ [2mm]
+               \hline \srvact{act_cancel_order_distribution}{} & Рассылка водителям (Отмена)  & Сервер делает рассылку сообщений водителям об отмене заказа.\\ [2mm]
+
+               \hline
+           \end{tabular}
+           \end{center}
+        \end{table}
+
+  \subsubsection{Обработка изменения данных заказа}
