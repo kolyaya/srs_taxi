@@ -47,6 +47,15 @@
           [NTDSP-\arabic{ntdsp}] #2%
           } 
 
+    % Счетчик уведомлений диспетчерской
+
+    	\newcounter{nttax}
+         \newcommand{\nttax}[2]{%
+          \addtocounter{nttax}{1}
+          \refstepcounter{nttax}\label{#1}
+          [NTTAX-\arabic{nttax}] #2%
+          } 
+
     % Теоремы 
 
     	\usepackage{amsthm}
