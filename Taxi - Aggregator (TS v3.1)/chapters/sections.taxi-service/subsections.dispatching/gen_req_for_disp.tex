@@ -40,16 +40,18 @@
 		% Таблица уведомлений
 		\label{disp_notifications_table}
 		\setlength{\extrarowheight}{2mm}
-        \begin{longtable}{|p{3cm}|p{4cm}|p{8cm}|}
+        \begin{longtable}{|p{3cm}|p{4cm}|p{5cm}|p{3cm}|}
             \caption {Таблица уведомлений}\\
 
-            \hline     \textbf{ID}&\textbf{Название}&\textbf{Содержимое уведомления} \\ [2mm]
+            \hline     \textbf{ID}&\textbf{Название}&\textbf{Содержимое уведомления} & \textbf{Инициатор}\\ [2mm]
             \endfirsthead
-            \hline     \textbf{ID}&\textbf{Название}&\textbf{Содержимое уведомления} \\ [2mm]
+            \hline     \textbf{ID}&\textbf{Название}&\textbf{Содержимое уведомления} & \textbf{Инициатор}\\ [2mm]
             \endhead
 
 
-            \hline  \ntdsp{notif_of_order_creation}{} & Создание заказа. & Заказ + [№Заказа] + создан.\\ [2mm]
+            \hline  \ntdsp{notif_of_order_creation}{} & Создание заказа. & Заказ + [№Заказа] + создан. & \\ [2mm]
+            
+            \hline  \ntdsp{notif_of_remove_driver_from_the_order}{} & Снятие водителя с заказа. & [ФИО водителя] + снят с заказа + [№Заказа]. & SRVACT-\ref{act_remove_driver_dispatcher_notification} \\ [2mm]
 
             \hline
         \end{longtable}
