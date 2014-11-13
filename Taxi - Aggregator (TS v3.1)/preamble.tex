@@ -56,6 +56,15 @@
           [NTTAX-\arabic{nttax}] #2%
           } 
 
+    % Счетчик элементов таксометра
+
+    	\newcounter{eltax}
+         \newcommand{\eltax}[2]{%
+          \addtocounter{eltax}{1}
+          \refstepcounter{eltax}\label{#1}
+          [ELTAX-\arabic{eltax}] #2%
+          }     
+
     % Теоремы 
 
     	\usepackage{amsthm}

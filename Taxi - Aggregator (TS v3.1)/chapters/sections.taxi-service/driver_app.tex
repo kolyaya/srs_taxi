@@ -76,7 +76,39 @@
 
   \subsection{Баланс}
 
-    3.2.6 Интерфейс счета водителя
+    DESC: Во вкладке баланс водитель может посмотреть актуальное состояние фискального и арендного баланса, а так же пополнить их. 
+
+      TITLE: Элементы вкладки\\
+      \sr{Элементы этого экрана описаны в таблице \ref{driver_app_balance_tab_elements}.}\\
+      PRIOR: MODERATE\\
+
+      TITLE: Расположение элементов\\
+      \sr{Экран делится на две части, при помощи вертикальной линии, в соотношении 6,5 : 3,5.}\\
+      \sr{В левой части расположен элемент ELTAX-\ref{driver_element_transaction_area}}\\
+      \sr{В правой части расположены элементы ELTAX-\ref{driver_element_fiscal_balance}, ELTAX-\ref{driver_element_rent_balance}, ELTAX-\ref{driver_element_ui_update_balance} в том же порядке в котором они преречислены.}\\
+      PRIOR: MODERATE\\
+
+      \begin{table}
+        \begin{center}
+        \caption{Элементы вкладки "Счет"}
+        \label{driver_app_balance_tab_elements}
+        \setlength{\extrarowheight}{2mm}
+        \begin{tabular}{|p{3cm}|p{4cm}|p{8cm}|}
+           \hline   \textbf{ID}&  \textbf{Название}&\textbf{Требования/Описание} \\ [2mm]
+
+
+           \hline \eltax{driver_element_fiscal_balance}{} & Фискальный баланс & \sr{Элемент состоит из поля - [Фискальный баланс в рублях]}\\ [2mm]
+
+           \hline \eltax{driver_element_rent_balance}{} & Арендный баланс & \sr{Элемент состоит из двух полей: \begin{itemize} \item [Баланс  в рублях] \item [Баланс конвертированный в дни] \end{itemize}}\\ [2mm]
+
+           \hline \eltax{driver_element_ui_update_balance}{} & Интерфейс выставления счета  & --- НАХОДИТСЯ В СТАДИИ РАЗРАБОТКИ ---\\ [2mm]
+
+           \hline \eltax{driver_element_transaction_area}{} & Область транзакций  & --- НАХОДИТСЯ В СТАДИИ РАЗРАБОТКИ ---\\ [2mm]    
+
+           \hline
+        \end{tabular}
+        \end{center}
+      \end{table}   
 
   \subsection{Настройки}
 
