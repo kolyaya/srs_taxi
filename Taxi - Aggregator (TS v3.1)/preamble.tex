@@ -111,6 +111,15 @@
 		    urlcolor=blue           % на URL
 		}
 
+%%% Работа со списками
+	\usepackage{enumitem}
+	\newlist{longenum}{enumerate}{5}
+	\setlist[longenum,1]{label=\roman*)}
+	\setlist[longenum,2]{label=\alph*)}
+	\setlist[longenum,3]{label=\arabic*)}
+	\setlist[longenum,4]{label=(\roman*)}
+	\setlist[longenum,5]{label=(\alph*)}
+
 %%% Работа с таблицами
 	\usepackage{array, tabularx, tabulary, booktabs} % Дополнительная работа с таблицами
 	\usepackage{longtable} % Длинные таблицы
