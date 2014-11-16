@@ -32,14 +32,14 @@
 							\item Элементы и поля в форме создания заказа преобразуются в элементы и поля вкладки "Заказ" из модального окна в Журнале заказов(\ref{order_modal_win}.).
 						\end{itemize} 
 
-					}\\
-					PRIOR: MODERATE\\
+					}  \mbox{}\\
+					PRIOR: MODERATE \mbox{}\\ 
 				}
 
 
 			\end{itemize}
 
-		    \begin{table}
+		    \begin{table} [h]
 	            \begin{center}
 	            \caption {Поля в элементе минижурнала}
 	            \label{fields_element_minijournal}
@@ -179,9 +179,47 @@
 					\hline 
 				\end{longtable}
 
-			\paragraph{Трек} \label{order_track} \mbox{} \\
+			\paragraph{Трек заказа} \label{order_track} \mbox{} \\
 
+				DESC: Трек заказа накладывается поверх карты.
+
+				\begin{itemize}
+
+					\item{
+
+						TITLE: Элементы трека заказа.\\
+						\sr{Трек заказа содержит в себе элементы описанные в таблице \ref{order_track_elements}.}\\
+						PRIOR: MODERATE\\
+					}
+
+					\item{
+						TITLE: Элементы карты при отображении трека заказа.\\
+						\sr{При отображении трека заказа остальные элементы карты скрываются.}\\
+						PRIOR: MODERATE\\
+					}
+
+				\end{itemize}
 				
+				\begin{table}[h]
+	                \begin{center}
+	                \caption {Элементы трека заказа.}
+	                \label{order_track_elements}
+	                \setlength{\extrarowheight}{2mm}
+	                \begin{tabular}{|p{5cm}|p{10cm}|}
+	                   \hline     \textbf{Элемент}&\textbf{Требования} \\ [2mm]
+
+	                   \hline  Точки заказа   & \\ [2mm]
+	                   \hline  Предполагаемый маршрут заказа   & \\ [2mm]
+	                   \hline  Отображается водитель   & \\ [2mm]
+	                   \hline  Реальный маршрут заказа  & \\ [2mm]
+	                   \hline  Точка принятия заказа   & \\ [2mm]
+	                   \hline  Маршрут от точки принятия заказа до текущего местоположения водителя   & \\ [2mm]
+
+	                   \hline
+	                \end{tabular}
+	                \end{center}
+                \end{table}
+
 
 		\subsubsection{Форма создания заказов}
 
