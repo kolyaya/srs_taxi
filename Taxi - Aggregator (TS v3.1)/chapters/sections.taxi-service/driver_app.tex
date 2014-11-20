@@ -123,6 +123,18 @@
 
     \subsubsection{Уведомления}
 
+      \paragraph{Уведомления в панели уведомлений Android} \mbox{}\\
+
+        \subparagraph{Функциональные требования} \mbox{}\\
+
+          \begin{itemize}
+
+            \item{TITLE: Интерфейс уведомления. \\
+                  \sr{В панели уведомлений Android уведомления отображаются согласно \href{https://www.evernote.com/shard/s389/sh/8d4e738c-61f0-4500-98bb-5882d89c9906/9ab0dc75caa4a5144ac1e5042e808b4f}{прототипу}.} \\
+                  PRIOR: MODERATE \\}
+
+          \end{itemize}
+
       % Таблица уведомлений
       \label{taxometr_notifications_table}
       \setlength{\extrarowheight}{2mm}
@@ -135,6 +147,8 @@
               \endhead
               
               \hline  \nttax{notif_driver_of_remove_driver_from_the_order}{} & Снятие водителя с заказа. & Вы сняты с заказа + [№Заказа]. & SRVACT-\ref{act_remove_driver_driver_notification} \\ [2mm]
+
+              \hline \nttax{notif_new order in rezerv}{} & Добавление нового заказа в резерв. & Заказ + [№Заказа] + поступил в резерв. & \\ [2mm]
 
               \hline
           \end{longtable}
