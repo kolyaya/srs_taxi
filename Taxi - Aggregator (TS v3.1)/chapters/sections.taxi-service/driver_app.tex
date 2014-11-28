@@ -7,9 +7,48 @@
 
   \subsection{Общие требования к мобильному приложению}
 
-    TITLE: Отправка GPS данных на сервер\\
-    \sr{Мобильное приложение оповещает сервер о местоположении водителя отсылая GPS координаты с периодичностью в STAT-\ref{periodicity_transfer_coordinates_taximeter_to_server} секунд.}\\
-    PRIOR: MODERATE\\
+    \begin{itemize}
+
+      \item{
+        TITLE: Отправка GPS данных на сервер\\
+        \sr{Мобильное приложение оповещает сервер о местоположении водителя отсылая GPS координаты с периодичностью в STAT-\ref{periodicity_transfer_coordinates_taximeter_to_server} секунд.}\\
+        PRIOR: MODERATE\\}
+
+    \end{itemize}
+
+  \subsection{Интерфейс приложения}
+   
+      \paragraph{Общие требования к интерфейсу}
+      \begin{itemize}
+
+        \item{
+          TITLE: Ориентация приложения на экране устройтсва\\
+          \sr{Приложение имеет альбомную оринтацию.}\\
+          PRIOR: MODERATE\\}
+
+        \item{
+          TITLE: Элементы интерфейса\\
+          \sr{Элементы интерфейса перечислены и описаны в таблице \ref{app_interface}.}\\
+          PRIOR: MODERATE\\}
+
+      \end{itemize}
+
+    \begin{table}
+    \begin{center}
+    \caption {Интерфейс приложения}
+    \label{app_interface}
+    \setlength{\extrarowheight}{2mm}
+      \begin{tabular}{|p{5cm}|p{10cm}|}
+        \hline     \textbf{Название элемента}&\textbf{Описание элемента} \\ [2mm]
+
+        \hline   Лента вкладок & Находится вверху экрана. Содержит следующие вкладки: \begin{itemize} \item Таксометр. (Описание - \ref{driver_app_taximeter_tab}) \item Заказы. (Описание - \ref{driver_app_orders_tab}) \item Навигатор. (Описание - \ref{driver_app_navigator_tab}) \item Счёт. (Описание - \ref{driver_app_bill_tab}) \item Робот. (Описание - \ref{driver_app_robot_tab}) \item Настройки. (Описание - \ref{driver_app_settings_tab}) \end{itemize}\\ [2mm]
+
+        \hline   Область интерфейса выбранной вкладки & Находится под 'Лентой вкладок' и занимает оставшуюся часть экрана. В этой области отображается интерфейс выбранной вкладки.\\ [2mm]
+
+        \hline
+      \end{tabular}
+    \end{center}
+    \end{table}
 
   \subsection{Пользователи}
 
@@ -19,14 +58,14 @@
 
              \begin{table}
              \begin{center}
-             \label{app_state}
              \caption {Состояния приложений}
+             \label{app_state}
              \setlength{\extrarowheight}{2mm}
              \begin{tabular}{|p{5cm}|p{10cm}|}
                  \hline     \textbf{Состояние}&\textbf{Описание, уровень доступа} \\ [2mm]
 
                  \hline   Авторизованный пользователь & В этом состоянии пользователю доступны все элементы интерфейса и функциональные возможности приложения.\\ [2mm]
-                 \hline   Автономный режим & В этом состоянии пользователю доступны следующие функции: \begin{itemize} \item Таксометр \item Навигатор \item \item\end{itemize}\\ [2mm]
+                 \hline   Автономный режим & В этом состоянии пользователю доступны следующие элементы интерфейса: \begin{itemize} \item Таксометр \item Навигатор \item Настройки \end{itemize}\\ [2mm]
                   \hline
              \end{tabular}
              \end{center}
@@ -34,24 +73,32 @@
 
   	  \subsubsection{Авторизация}
 
-  		DESC: Водитель имеет возможность ввести имя компании, свой позывной (логин) и пароль в специальном окне. Мобильное приложение отправляет эти данные на сервер для проверки и если они валидны то открывается соединение с сервером и все элементы интерфейса становятся доступны.
+  		  DESC: Водитель имеет возможность выбрать из выпадающего списка название своей компании, свой позывной (логин) и пароль в специальном окне. Мобильное приложение отправляет эти данные на сервер для проверки, и если они валидны, то открывается соединение с сервером и все элементы интерфейса становятся доступны.
 
-  		Требования: 
-  		Если водитель не авторизован, то все элементы интерфейса кроме настроек, навигатора и таксометра становятся не доступны.
-  		Вместе с позывным и паролем, при авторизации отправляется также GPS координаты - местоположение водителя.
+        \paragraph{Общие требования}
+          \begin{itemize}
+            \item{
+              TITLE: Активность элементов интерфейса для неавторизованного пользователя.\\
+              \sr{Если водитель не авторизован, все элементы интерфейса, кроме 'Настроек', 'Навигатора' и 'Таксометра' становятся недоступными.}\\
+              PRIOR: MODERATE\\}
 
-  \subsection{Таксометр}
+            \item{
+              TITLE: Информация, отправляемая на сервер при авторизации.\\
+              \sr{Вместе с позывным и паролем, при авторизации отправляются также GPS координаты - местоположение водителя.}\\
+              PRIOR: MODERATE\\}
+          \end{itemize}  		    
 
+  \subsection{Таксометр} \label{driver_app_taximeter_tab}
 
     3.2.3 Таксометр
     3.2.3.1 Работа с текущим заказом
     3.2.3.2 Просчет стоимости
 
-  \subsection{Заказы}
+  \subsection{Заказы} \label{driver_app_orders_tab}
 
     экран Заказа
 
-  \subsection{Навигатор}
+  \subsection{Навигатор} \label{driver_app_navigator_tab}
 
     DESC: В мобильное приложение встроен Яндекс.Навигатор.
 
@@ -71,7 +118,43 @@
         PRIOR: MODERATE\\}
       \end{itemize}
 
-  \subsection{Робот}
+  \subsection{Счёт} \label{driver_app_bill_tab}
+
+    DESC: Во вкладке баланс водитель может посмотреть актуальное состояние фискального и арендного баланса, а так же пополнить их. 
+
+      TITLE: Элементы вкладки\\
+      \sr{Элементы этого экрана описаны в таблице \ref{driver_app_balance_tab_elements}.}\\
+      PRIOR: MODERATE\\
+
+      TITLE: Расположение элементов\\
+      \sr{Экран делится на две части, при помощи вертикальной линии, в соотношении 6,5 : 3,5.}\\
+      \sr{В левой части расположен элемент ELTAX-\ref{driver_element_transaction_area}}\\
+      \sr{В правой части расположены элементы ELTAX-\ref{driver_element_fiscal_balance}, ELTAX-\ref{driver_element_rent_balance}, ELTAX-\ref{driver_element_ui_update_balance} в том же порядке в котором они преречислены.}\\
+      PRIOR: MODERATE\\
+
+      \begin{table}
+        \begin{center}
+        \caption{Элементы вкладки "Счет"}
+        \label{driver_app_balance_tab_elements}
+        \setlength{\extrarowheight}{2mm}
+        \begin{tabular}{|p{3cm}|p{4cm}|p{8cm}|}
+           \hline   \textbf{ID}&  \textbf{Название}&\textbf{Требования/Описание} \\ [2mm]
+
+
+           \hline \eltax{driver_element_fiscal_balance}{} & Фискальный баланс & \sr{Элемент состоит из поля - [Фискальный баланс в рублях]}\\ [2mm]
+
+           \hline \eltax{driver_element_rent_balance}{} & Арендный баланс & \sr{Элемент состоит из двух полей: [Баланс  в рублях], [Баланс конвертированный в дни]}\\ [2mm]
+
+           \hline \eltax{driver_element_ui_update_balance}{} & Интерфейс выставления счета  & --- НАХОДИТСЯ В СТАДИИ РАЗРАБОТКИ ---\\ [2mm]
+
+           \hline \eltax{driver_element_transaction_area}{} & Область транзакций  & --- НАХОДИТСЯ В СТАДИИ РАЗРАБОТКИ ---\\ [2mm]    
+
+           \hline
+        \end{tabular}
+        \end{center}
+      \end{table}   
+
+  \subsection{Робот} \label{driver_app_robot_tab}
 
     DESC: При переходе на вкладку “Робот” отображается список настроек и список режимов и опций для каждого из них.
 
@@ -120,7 +203,7 @@
       \begin{itemize}
 
         \item{
-          \sr{В списке должны присутствовать настройки, перечисленные в таблице \ref{table:driver_app_robot_tab_table_general_settings}.}\\
+          \sr{В списке должны присутствовать настройки, перечисленные в таблице \ref{driver_app_robot_tab_table_general_settings}.}\\
           PRIOR: MODERATE\\}
 
       \end{itemize}
@@ -129,7 +212,7 @@
       \begin{table}[h] 
         \begin{center}
         \caption {Общие настройки робота}
-        \label{table:driver_app_robot_tab_table_general_settings}
+        \label{driver_app_robot_tab_table_general_settings}
         \setlength{\extrarowheight}{2mm}
         \begin{tabular}{|p{4cm}|p{3cm}|p{8cm}|}
 
@@ -155,22 +238,16 @@
       \begin{itemize}
 
         \item{
-          TITLE: Включение и выключение робота.\\
-          \sr{Робот автоматически включается после установки общих настроек и выбора режимов работы. Если никакие настройки не устновлены и не выбран ни один из режимов работы - робот выключается.}\\
-          PRIOR: MODERATE\\
-          }
-
-        \item{
           TITLE: Режимы работы роботов. \\
-          \sr{В списке должны присутствовать режимы, перечисленные в таблице \ref{table:driver_app_robot_tab_modes}.}\\
+          \sr{В списке должны присутствовать режимы, перечисленные в таблице \ref{driver_app_robot_tab_modes}.}\\
           PRIOR: MODERATE\\}
       \end{itemize}
 
       %%%Таблица режимов работы робота.
       \begin{table}
           \begin{center}
-          \label{driver_app_robot_tab_modes}
           \caption {Режимы работы робота}
+          \label{driver_app_robot_tab_modes}
           \setlength{\extrarowheight}{2mm}
           \begin{tabular}{|p{3cm}|p{3cm}|p{6cm}|p{3cm}|}
 
@@ -214,52 +291,16 @@
 
             \hline   Порты & Выпадающий список & Водитель помечает чекбоксом названия аэропортов. Доступен выбор из следующих аэропортов: \begin{itemize} \item Домодедово \item Шереметьево \item Внуково \end{itemize} \\ [2mm]
 
-            \hline   Встреча & Переключатель ON/OFF & Опция, указывающая на то, что местом назначения для заказа этого типа будет один или несколько аэропортов, выбранных водителем. \\ [2mm]
+            \hline   Встреча & Checkbox & Опция, указывающая на то, что местом назначения для заказа этого типа будет один или несколько аэропортов, выбранных водителем. \\ [2mm]
 
-            \hline   Проводы & Переключатель ON/OFF & Опция, указывающая на то, что местом прибытия для заказа этого типа является один или несколько аэропортов, выбранных водителем. \\ [2mm]
+            \hline   Проводы & Checkbox & Опция, указывающая на то, что местом прибытия для заказа этого типа является один или несколько аэропортов, выбранных водителем. \\ [2mm]
 
             \hline
           \end{tabular}
           \end{center}
       \end{table}
 
-  \subsection{Баланс}
-
-    DESC: Во вкладке баланс водитель может посмотреть актуальное состояние фискального и арендного баланса, а так же пополнить их. 
-
-      TITLE: Элементы вкладки\\
-      \sr{Элементы этого экрана описаны в таблице \ref{driver_app_balance_tab_elements}.}\\
-      PRIOR: MODERATE\\
-
-      TITLE: Расположение элементов\\
-      \sr{Экран делится на две части, при помощи вертикальной линии, в соотношении 6,5 : 3,5.}\\
-      \sr{В левой части расположен элемент ELTAX-\ref{driver_element_transaction_area}}\\
-      \sr{В правой части расположены элементы ELTAX-\ref{driver_element_fiscal_balance}, ELTAX-\ref{driver_element_rent_balance}, ELTAX-\ref{driver_element_ui_update_balance} в том же порядке в котором они преречислены.}\\
-      PRIOR: MODERATE\\
-
-      \begin{table}
-        \begin{center}
-        \caption{Элементы вкладки "Счет"}
-        \label{driver_app_balance_tab_elements}
-        \setlength{\extrarowheight}{2mm}
-        \begin{tabular}{|p{3cm}|p{4cm}|p{8cm}|}
-           \hline   \textbf{ID}&  \textbf{Название}&\textbf{Требования/Описание} \\ [2mm]
-
-
-           \hline \eltax{driver_element_fiscal_balance}{} & Фискальный баланс & \sr{Элемент состоит из поля - [Фискальный баланс в рублях]}\\ [2mm]
-
-           \hline \eltax{driver_element_rent_balance}{} & Арендный баланс & \sr{Элемент состоит из двух полей: [Баланс  в рублях], [Баланс конвертированный в дни]}\\ [2mm]
-
-           \hline \eltax{driver_element_ui_update_balance}{} & Интерфейс выставления счета  & --- НАХОДИТСЯ В СТАДИИ РАЗРАБОТКИ ---\\ [2mm]
-
-           \hline \eltax{driver_element_transaction_area}{} & Область транзакций  & --- НАХОДИТСЯ В СТАДИИ РАЗРАБОТКИ ---\\ [2mm]    
-
-           \hline
-        \end{tabular}
-        \end{center}
-      \end{table}   
-
-  \subsection{Настройки}
+  \subsection{Настройки} \label{driver_app_settings_tab}
 
     \subsubsection{Уведомления}
 
