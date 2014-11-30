@@ -10,6 +10,11 @@
     \begin{itemize}
 
       \item{
+        TITLE: Интернет подключение\\
+        \sr{Для работы приложения необходимо интернет-подключение.}\\
+        PRIOR: MODERATE\\}
+
+      \item{
         TITLE: Отправка GPS данных на сервер\\
         \sr{Мобильное приложение оповещает сервер о местоположении водителя отсылая GPS координаты с периодичностью в STAT-\ref{periodicity_transfer_coordinates_taximeter_to_server} секунд.}\\
         PRIOR: MODERATE\\}
@@ -50,7 +55,7 @@
     \end{center}
     \end{table}
 
-  \subsection{Пользователи}
+  \subsection{Пользователи} \label{driver_app_users_tab}
 
       \subsubsection{Роли, состояния приложения}
 
@@ -71,22 +76,106 @@
              \end{center}
              \end{table}
 
-  	  \subsubsection{Авторизация}
+  	  \subsubsection{Авторизация} \label{driver_app_users_tab_authorization}
 
-  		  DESC: Водитель имеет возможность выбрать из выпадающего списка название своей компании, ввести свой позывной (логин) и пароль в специальном окне. Мобильное приложение отправляет эти данные на сервер для проверки, и если они валидны, то открывается соединение с сервером и все элементы интерфейса становятся доступны.
+  		  DESC: Водитель имеет возможность авторизоваться в специальном окне, которое появляется после выбора пункта “Войти” во вкладке “Настройки”.%Водитель имеет возможность выбрать из выпадающего списка название своей компании, ввести свой позывной (логин) и пароль в специальном окне. Мобильное приложение отправляет эти данные на сервер для проверки, и если они валидны, то открывается соединение с сервером и все элементы интерфейса становятся доступны.
 
         \paragraph{Общие требования}
           \begin{itemize}
             \item{
               TITLE: Активность элементов интерфейса для неавторизованного пользователя.\\
-              \sr{Если водитель не авторизован, все элементы интерфейса, кроме “Настроек”, “Навигатора” и “Таксометра” становятся недоступными.}\\
+              \sr{Если водитель не авторизован, все элементы интерфейса, кроме вкладок “Настройки”, “Навигатор” и “Таксометр” становятся недоступными.}\\
               PRIOR: MODERATE\\}
 
             \item{
-              TITLE: Информация, отправляемая на сервер при авторизации.\\
-              \sr{Вместе с позывным и паролем, при авторизации отправляются также GPS координаты - местоположение водителя.}\\
+              TITLE: Критерии определения успешной авторизации \\
+              \sr{Мобильное приложение отправляет на сервер для проверки данные, введенные водителем в специальном окне (Описание - \ref{authorization_form_interface}), а также GPS координаты - местоположение водителя, и если все эти данные валидны, то открывается соединение с сервером и все элементы интерфейса становятся доступны, водитель считается авторизованным.}\\
               PRIOR: MODERATE\\}
-          \end{itemize}  		    
+          \end{itemize}
+
+        \paragraph{Интерфейс окна авторизации} \label{authorization_form_interface}
+          Интерфейс окна авторизации описан в таблице \ref{authorization_interface}.
+
+          \begin{table}[h]
+            \begin{center}
+            \caption {Интерфейс окна авторизации}
+            \label{authorization_interface}
+            \setlength{\extrarowheight}{2mm}
+              \begin{tabular}{|p{4cm}|p{3cm}|p{4cm}|p{4cm}|}
+                \hline     \textbf{Название}&\textbf{Способ отображения}&\textbf{Расположение в окне}&\textbf{Функциональные требования} \\ [2mm]
+
+                \hline   Компания & Выпадающий список & Первая сверху строка & Описан в \ref{authorization_functional_company}.\\ [2mm]
+
+                \hline   Логин & Поле для ввода & Под “Компания” & Описан в \ref{authorization_functional_login}. \\ [2mm]
+
+                \hline   Пароль & Поле для ввода со скрытыми символами & Под “Логин” & Описан в \ref{authorization_functional_pwd}. \\ [2mm]
+
+                \hline   Запомнить & Checkbox & Под “Пароль” & Описан в \ref{authorization_functional_remember}. \\ [2mm]
+
+                \hline   Войти & Кнопка & Под “Запомнить” & Описан в \ref{authorization_functional_enter}. \\ [2mm]
+
+                \hline   Работать автономно & Кнопка & Под “Войти” & Описан в \ref{authorization_functional_autonom}. \\ [2mm]
+
+                \hline
+              \end{tabular}
+            \end{center}
+          \end{table}
+
+        \paragraph{Функциональные требования} 
+          
+          \subparagraph{Компания} \label{authorization_functional_company}
+
+            \begin{itemize}
+              \item{
+                TITLE: Выбор компании\\
+                \sr{Водитель выбирает название своей компании из выпадающего списка, который выдает сервер.}\\
+                PRIOR: MODERATE\\}
+            \end{itemize}
+
+          \subparagraph{Логин}  \label{authorization_functional_login}
+
+            \begin{itemize}
+              \item{
+                TITLE: Общие требования к логину\\
+                \sr{Должен быть на английском языке. Водитель вводит свой позывной с помощью клавиатуры Android в поле для ввода.}\\
+                PRIOR: MODERATE\\}
+            \end{itemize}
+
+          \subparagraph{Пароль} \label{authorization_functional_pwd}
+
+            \begin{itemize}
+              \item{
+                TITLE: Общие требования к паролю\\
+                \sr{Водитель вводит пароль к своему логину с помощью клавиатуры Android в поле для ввода.}\\
+                PRIOR: MODERATE\\}
+            \end{itemize}            
+
+          \subparagraph{Запомнить}  \label{authorization_functional_remember}
+
+            \begin{itemize}
+              \item{
+                TITLE: Общие требования к checkbox-у\\
+                \sr{При наличии флажка в checkbox-е, введенные водителем логин и пароль сохраняются при следующем входе в приложение. При отсутствии флажка, введенные данные не сохраняются.}\\
+                PRIOR: MODERATE\\}
+            \end{itemize}          
+
+          \subparagraph{Войти}  \label{authorization_functional_enter}
+
+            \begin{itemize}
+              \item{
+                TITLE: Действия при нажатии на кнопку\\
+                \sr{При нажатии на кнопку “Войти” на сервер отправляются данные, введенные водителем в поля “Логин”(\ref{authorization_functional_login}) и “Пароль”(\ref{authorization_functional_pwd}), отправляется состояние флажка “Запомнить”(\ref{authorization_functional_remember}) и выбранный элемент из списка “Компания”(\ref{authorization_functional_company}). На сервере происходит проверка введенных данных, и если они валидны, происходит авторизация водителя в приложении. Если данные не проходят валидацию, приложение возвращает водителя обратно на окно авторизации, и водителю вновь необходимо ввести данные.}\\
+                PRIOR: MODERATE\\}
+            \end{itemize}
+
+          \subparagraph{Работать автономно} \label{authorization_functional_autonom}
+
+            \begin{itemize}
+              \item{
+                TITLE: Действия при нажатии на кнопку\\
+                \sr{При нажатии на кнопку “Работать автономно”, авторизация не происходит и на сервер не отправляются никакие данные. Приложение возвращает водителя на вкладку “Таксометр” (Описание - \ref{driver_app_taximeter_tab}).}\\
+                PRIOR: MODERATE\\}
+            \end{itemize}
 
   \subsection{Таксометр} \label{driver_app_taximeter_tab}
 
