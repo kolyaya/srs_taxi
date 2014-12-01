@@ -116,180 +116,145 @@
 
     DESC: При переходе на вкладку “Таксометр” отображается экран таксометра.
 
-    \subsubsection{Интерфейс вкладки}
+    \subsubsection{Вкладка при первом открытии} \label{driver_app_taximeter_tab_first_opening}
+      \begin{itemize}
 
-      \paragraph{Начальный интерфейс вкладки} \mbox{}\\ \label{driver_app_taximeter_tab_start_interface}
-        DESC: Интерфейс вкладки при первом её открытии. \\
-        Описание начального интерфейса вкладки находится в таблице \ref{driver_app_taximeter_tab_start_interface_table}.\\
+        \item{
+          TITLE: Элементы вкладки при первом открытии\\
+          \sr{Элементы этого окна описаны в таблице \ref{driver_app_taximeter_tab_first_opening_elements}.}\\
+          PRIOR: MODERATE\\}
 
-        %%%Начальный интерфейс вкладки
-        \begin{table}[h]
-          \begin{center}
-          \caption {Начальный интерфейс вкладки “Таксометр”}
-          \label{driver_app_taximeter_tab_start_interface_table}
-          \setlength{\extrarowheight}{2mm}
-            \begin{tabular}{|p{4cm}|p{3cm}|p{4cm}|p{4cm}|}
-              \hline     \textbf{Название}&\textbf{Расположение на экране}&\textbf{Требования к интерфейсу}&\textbf{Функциональные требования} \\ [2mm]
+        \item{
+          TITLE: Расположение элементов\\
+          \sr{Окно условно делится на три части, расположенных одна под другой.}\\
+          \sr{В верхней части в два ряда расположены элементы ELTAX-\ref{driver_element_driver_balance}, ELTAX-\ref{driver_element_driver_pozyvnoy}, ELTAX-\ref{driver_element_driver_auth_state}, ELTAX-\ref{driver_element_driver_curr_coords}, ELTAX-\ref{driver_element_this_order_time}, ELTAX-\ref{driver_element_this_order_dist}.}\\
+          \sr{В средней части расположен элемент ELTAX-\ref{driver_element_driver_state}.}\\
+          \sr{В нижней части расположен элемент ELTAX-\ref{driver_element_start_button}.}\\
+          PRIOR: MODERATE\\}
 
-              \hline   Основные сведения о водителе & Верхняя панель & Описаны в таблице \ref{driver_app_taximeter_tab_start_interface_table_driver_info}. & Описан в \ref{taximeter_functional_driver_info}.\\ [2mm]
+      \end{itemize}
 
-              \hline   Состояние водителя & Средняя панель & Отображение состояния: “Свободен” / “Занят”. & Описаны в \ref{taximeter_functional_driver_state} \\ [2mm]
-
-              \hline   Кнопка “Старт” & Нижняя панель & Кнопка с названием “Старт”. & Реакция на нажатие этой кнопки описана в \ref{taximeter_functional_start_button}\\ [2mm]
-
-              \hline
-            \end{tabular}
-          \end{center}
-        \end{table}
-
-        %%%Основные сведения о водителе - интерфейс ++++++++++ функционал
-        \setlength{\extrarowheight}{2mm}
-          \begin{longtable}{|p{5cm}|p{5cm}|p{5cm}|}
+      \setlength{\extrarowheight}{2mm}
+        \begin{longtable}{|p{3cm}|p{3cm}|p{9cm}|}
             
-            \caption {Основные сведения о водителе} \label{driver_app_taximeter_tab_start_interface_table_driver_info} \\
+        \caption {Элементы вкладки при первом открытии} \label{driver_app_taximeter_tab_first_opening_elements} \\
 
-              \hline  \textbf{Название}&\textbf{Способ отображения (водитель авторизован)}&\textbf{Способ отображения (водитель не авторизован)} \\ [2mm]
-              \endfirsthead
-              \hline  \textbf{Название}&\textbf{Способ отображения(водитель авторизован)}&\textbf{Способ отображения(водитель не авторизован)} \\ [2mm]
-              \endhead
+          \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+          \endfirsthead
+          \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+          \endhead
 
-              \hline   Баланс водителя & [Баланс: ] + арендный счёт водителя & [Баланс: ] + [-] \\ [2mm]
+          \hline \eltax{driver_element_driver_balance}{} & Баланс водителя & \sr{Отображается в виде: \begin{itemize} \item Водитель авторизован: [Баланс: ] + арендный счёт водителя. \item Водитель не авторизован: [Баланс: ] + [-]. \end{itemize} Арендный счет водителя берется с сервера.}\\ [2mm]
 
-              \hline   Позывной водителя & [Позывной: ] + позывной водителя & Не отображается \\ [2mm]
+          \hline \eltax{driver_element_driver_pozyvnoy}{} & Позывной водителя & \sr{Отображается в виде: \begin{itemize} \item Водитель авторизован: [Позывной: ] + позывной водителя. \item Водитель не авторизован: Не отображается. \end{itemize} Позывным водителя является логин, введенный им при авторизации.}\\ [2mm]
 
-              \hline   Состояние авторизации водителя & Индикатор зеленого цвета + [В сети] & Индикатор красного цвета + [Не в сети] \\ [2mm] %%%Добавить ссылку на вкладку "Настройки", "Войти".
+          \hline \eltax{driver_element_driver_auth_state}{} & Состояние авторизации водителя & \sr{Отображается в виде: \begin{itemize} \item Водитель авторизован: Индикатор зеленого цвета + [В сети]. \item Водитель не авторизован: Индикатор красного цвета + [Не в сети]. \end{itemize} Водитель считается авторизованным, если он ввел корректные логин и пароль при авторизации и с сервера пришел положительный ответ на запрос об авторизации с этими данными}\\ [2mm]
 
-              \hline   Текущее местоположение водителя & Возможны два варианта: \begin{itemize} \item GPS включен: Индикатор зеленого цвета + GPS координаты текущего местоположения водителя \item GPS выключен: Индикатор красного цвета + [Нет координат] \end{itemize} & Индикатор красного цвета + [Нет координат] \\ [2mm]
-              
-              \hline   Время, затраченное водителем на текущий заказ. & Обнуленный счетчик времени в формате [ЧЧ:ММ:СС] & Обнуленный счетчик времени в формате [ЧЧ:ММ:СС] \\ [2mm]
-              
-              \hline   Километраж текущего заказа & Обнуленный счетчик километража в формате [0,00 км] & Обнуленный счетчик километража в формате [0,00 км] \\ [2mm]
-              
-              \hline
+          \hline \eltax{driver_element_driver_curr_coords}{} & Текущее местоположение водителя & \sr{Отображается в виде: \begin{itemize} \item Водитель авторизован: \begin{itemize} \item GPS включен: Индикатор зеленого цвета + GPS координаты текущего местоположения водителя. \item GPS выключен: Индикатор красного цвета + [Нет координат]. \end{itemize} \item Водитель не авторизован: Индикатор красного цвета + [Нет координат] \end{itemize}}\\ [2mm]    
 
-          \end{longtable}
+          \hline \eltax{driver_element_this_order_time}{} & Время, затраченное водителем на текущий заказ & \sr{Отображается счетчик времени, затраченного на текущий заказ, в формате [ЧЧ:ММ:СС].}\\ [2mm]
 
-      \paragraph{Интерфейс вкладки после нажатия кнопки “Старт”} \mbox{}\\ \label{driver_app_taximeter_tab_interface_start_button}
-        DESC: Интерфейс вкладки после нажатия кнопки “Старт”. 
-        Описание интерфейса вкладки после нажатия на кнопку “Старт” находится в таблице \ref{driver_app_taximeter_tab_start_button_interface_table}.\\
+          \hline \eltax{driver_element_this_order_dist}{} & Километраж текущего заказа & \sr{Отображается счетчик километража текущего заказа в формате [км,м].}\\ [2mm]
 
-        %%%Интерфейс вкладки после нажатия кнопки “Старт”
-        \begin{table}[h]
-          \begin{center}
-          \caption {Интерфейс вкладки “Таксометр” после нажатия кнопки “Старт”}
-          \label{driver_app_taximeter_tab_start_button_interface_table}
-          \setlength{\extrarowheight}{2mm}
-            \begin{tabular}{|p{4cm}|p{3cm}|p{4cm}|p{4cm}|}
-              \hline     \textbf{Название}&\textbf{Расположение на экране}&\textbf{Требования к интерфейсу}&\textbf{Функциональные требования} \\ [2mm]
+          \hline \eltax{driver_element_driver_state}{} & Состояние водителя & \sr{Отображается состояние водителя. Есть два состояния: \begin{itemize} \item “Свободен” - отображается, когда у водителя нету активных заказов. \item “Занят” - отображается, когда у водителя есть активный заказ. \end{itemize}}\\ [2mm]
 
-              \hline   Основные сведения о водителе & Верхняя панель & Аналогичны \ref{driver_app_taximeter_tab_start_interface_table_driver_info}. & Описаны в \ref{taximeter_functional_driver_info_after_start_button}. \\ [2mm]
+          \hline \eltax{driver_element_start_button}{} & Кнопка “Старт” & \sr{По нажатию кнопки “Старт” интерфейс вкладки становится таким, как описано в \ref{driver_app_taximeter_tab_after_start_button}.}\\ [2mm]
 
-              \hline   Стоимость поездки & Средняя панель & Описаны в таблице \ref{driver_app_taximeter_tab_start_button_interface_drive_costs}. & Описаны в \ref{taximeter_functional_drive_costs}. \\ [2mm]%Появляется вместо кнопки “Состояния водителя”. \\ [2mm]
+          \hline
 
-              \hline   Кнопка “Завершить” & Нижняя панель & Кнопка с названием “Завершить”. & Реакция на нажатие этой кнопки описана в \ref{taximeter_functional_end_button}. \\ [2mm]%Появляется вместо кнопки “Старт”. Нажатие на эту кнопку меняет интерфейс вкладки на такой, как описано в \ref{driver_app_taximeter_tab_interface_end_button}. \\ [2mm]
+        \end{longtable}
 
-              \hline   Информация о текущем заказе & Левая скрытая боковая панель & Описаны в таблице \ref{driver_app_taximeter_tab_start_button_interface_curr_order_info} & Описаны в \ref{taximeter_functional_curr_order_info}. \\ [2mm]%Отображается информация о текущем заказе, описанная в таблице \ref{driver_app_taximeter_tab_start_button_interface_table_order_info}. \\ [2mm]
+    \subsubsection{Вкладка после нажатия кнопки “Старт”}  \label{driver_app_taximeter_tab_after_start_button}
+      \begin{itemize}
 
-              \hline
-            \end{tabular}
-          \end{center}
-        \end{table}
+        \item{
+          TITLE: Элементы вкладки после нажатия кнопки “Старт”\\
+          \sr{Новые элементы этого окна описаны в таблице \ref{driver_app_taximeter_tab_after_start_button_elements}.}\\
+          PRIOR: MODERATE\\}
 
-        %%%Стоимость поездки - таблицу
-        \label{driver_app_taximeter_tab_start_button_interface_drive_costs}
+        \item{
+          TITLE: Расположение элементов\\
+          \sr{Окно условно делится на три части, расположенных одна под другой.}\\
+          \sr{В верхней части в два ряда расположены элементы ELTAX-\ref{driver_element_driver_balance}, ELTAX-\ref{driver_element_driver_pozyvnoy}, ELTAX-\ref{driver_element_driver_auth_state}, ELTAX-\ref{driver_element_driver_curr_coords}, ELTAX-\ref{driver_element_this_order_time_after_start_button}, ELTAX-\ref{driver_element_this_order_dist_after_start_button}.}\\
+          \sr{В средней части расположен элемент ELTAX-\ref{driver_element_order_costs}.}\\
+          \sr{В нижней части расположен элемент ELTAX-\ref{driver_element_end_button}.}\\
+          \sr{Слева расположена скрытая боковая панель ELTAX-\ref{driver_element_order_info}.}\\
+          PRIOR: MODERATE\\}
 
-        %%%Информация о текущем заказе - таблицу
-        \label{driver_app_taximeter_tab_start_button_interface_curr_order_info}
-      
-        счетчик рубликов, кнопка завершить, боковая панель информации о текущем заказе
+      \end{itemize}
 
-      \paragraph{Интерфейс вкладки после нажатия кнопки “Завершение”} \mbox{}\\ \label{driver_app_taximeter_tab_interface_end_button}
-        DESC: Интерфейс вкладки после нажатия кнопки “Завершение”. 
-        Описание интерфейса вкладки после нажатия на кнопку “Завершение” находится в таблице \ref{driver_app_taximeter_tab_end_button_interface_table}.\\
-
-        Кнопка оплата и изменить
-
-    \subsubsection{Функциональные требования к элементам}
-      
-      \paragraph{Начальный экран вкладки} \label{taximeter_functional_start_screen} 
-        
-        \subparagraph{Основные сведения о водителе} \label{taximeter_functional_driver_info}
-          \begin{itemize}
-
-            \item{
-              TITLE: Баланс водителя \\
-              \sr{Происходит запрос на сервер за арендным счётом водителя}. \\
-              PRIOR: MODERATE \\
-            }
-
-            \item{
-              TITLE: Позывной водителя \\
-              \sr{Позывным водителя является логин, введенный им при авторизации}. \\
-              PRIOR: MODERATE \\
-            }
-
-            \item{
-              TITLE: Состояние авторизации водителя \\
-              \sr{Водитель считается авторизованным, если он ввел корректные логин и пароль в форму “Войти” во вкладке “Настройки” и с сервера пришел положительный ответ на запрос об авторизации с этими данными}. \\
-              PRIOR: MODERATE \\
-            }
-
-            \item{
-              TITLE: Текущее местоположение водителя \\
-              \sr{Отображаются GPS координаты текущего местоположения водителя}. \\
-              PRIOR: MODERATE \\
-            }
+      \setlength{\extrarowheight}{2mm}
+        \begin{longtable}{|p{3cm}|p{3cm}|p{9cm}|}
             
-            \item{
-              TITLE: Время, затраченное водителем на текущий заказ \\
-              \sr{Отображается счетчик времени, затраченного на текущий заказ. Динамически увеличивается ежесекундно после нажатия кнопки “Старт”(Описание - \ref{driver_app_taximeter_tab_interface_start_button}), пока водитель не нажмет на кнопку “Завершение”(Описание - \ref{driver_app_taximeter_tab_interface_end_button}), после чего значение будет хранится, пока водитель не нажмет на кнопку “Оплата”(Описание - \ref{driver_app_taximeter_tab_interface_checkout_button})}. \\
-              PRIOR: MODERATE \\
-            }
+        \caption {Новые элементы вкладки после нажатия кнопки “Старт”} \label{driver_app_taximeter_tab_after_start_button_elements} \\
 
-            \item{
-              TITLE: Километраж текущего заказа \\
-              \sr{Счетчик километража текущего заказа. Динамически увеличивается на соответствующее проеханное водителем расстояние после нажатия кнопки “Старт”(Описание - \ref{driver_app_taximeter_tab_interface_start_button}), пока водитель не нажмет на кнопку “Завершение”(Описание - \ref{driver_app_taximeter_tab_interface_end_button}), после чего значение будет хранится, пока водитель не нажмет на кнопку “Оплата”(Описание - \ref{driver_app_taximeter_tab_interface_checkout_button})}. \\
-              PRIOR: MODERATE \\
-            }          
-          \end{itemize}
+          \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+          \endfirsthead
+          \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+          \endhead
 
-        \subparagraph{Состояние водителя} \label{taximeter_functional_driver_state}
-          \begin{itemize}
+          \hline \eltax{driver_element_this_order_time_after_start_button}{} & Время, затраченное водителем на текущий заказ & \sr{Отображается счетчик времени, затраченного на текущий заказ, в формате [ЧЧ:ММ:СС]. Динамически увеличивается ежесекундно после нажатия кнопки “Старт”(ELTAX-\ref{driver_element_start_button}).}\\ [2mm]
 
-            \item{
-              TITLE: Состояние: “Свободен” \\
-              \sr{Отображается, когда у водителя нету активных заказов}. \\
-              PRIOR: MODERATE \\
-            }
+          \hline \eltax{driver_element_this_order_dist_after_start_button}{} & Километраж текущего заказа & \sr{Отображается счетчик километража текущего заказа в формате [км,м]. Динамически увеличивается на соответствующее проеханное водителем расстояние после нажатия кнопки “Старт”.}\\ [2mm]
 
-            \item{
-              TITLE: Состояние: “Занят” \\
-              \sr{Отображается, когда у водителя есть активный заказ}. \\
-              PRIOR: MODERATE \\
-            }
+          \hline \eltax{driver_element_order_costs}{} & Стоимость поездки & \sr{Отображается счетчик стоимости поездки в формате [Значение счетчика] + [руб.]. Значения счетчика изменяются по формуле: ([Стоимость одной минуты в рублях] * [Время, затраченное водителем на текущий заказ]). Значение счетчика нельзя изменить вручную. }\\ [2mm]
 
-          \end{itemize}
+          \hline \eltax{driver_element_end_button}{} & Кнопка “Завершить” & \sr{По нажатию кнопки “Завершить”: 
+          \begin{itemize} 
+            \item Интерфейс вкладки становится таким, как описано в \ref{driver_app_taximeter_tab_after_end_button}. 
+            \item Прекращается изменение счетчика ELTAX-\ref{driver_element_this_order_time_after_start_button}, его значение сохраняется и отображается. 
+            \item Прекращается изменение счетчика ELTAX-\ref{driver_element_this_order_dist_after_start_button}, его значение сохраняется и отображается. 
+            \item Прекращается изменение счетчика ELTAX-\ref{driver_element_order_costs}, его значение сохраняется и отображается. 
+            \item Все вкладки приложения, кроме “Таксометр”, становятся неактивными. 
+          \end{itemize}}\\ [2mm]
 
-      \paragraph{Нажатие кнопки “Старт”}  \label{taximeter_functional_start_button}
+          \hline \eltax{driver_element_order_info}{} & Информация о заказе & \sr{Выдвигаемая панель. В этой панели находятся следующие элементы: \begin{itemize} \item Заголовок - “ИНФОРМАЦИЯ О ТЕКУЩЕМ ЗАКАЗЕ” \item “Время” - отображается время начала выполнения заказа. \item “Откуда” - адрес, откуда началось выполнение заказа. \item “Куда” - адрес назначения заказа. \item “Примечания” - какие-либо примечания к текущему заказу. \end{itemize}}\\ [2mm]
+          
+          \hline
 
-        \subparagraph{Интерфейс вкладки “Таксометр”}
-          Интерфейс вкладки “Таксометр” меняется на такой, как описано в \ref{driver_app_taximeter_tab_interface_start_button}.\\
+        \end{longtable}      
+          
+    \subsubsection{Вкладка после нажатия кнопки “Завершение”} \label{driver_app_taximeter_tab_after_end_button} 
+      \begin{itemize}
 
-        \subparagraph{Основные сведения о водителе после нажатия кнопки “Старт”} \label{taximeter_functional_driver_info_after_start_button}
+        \item{
+          TITLE: Элементы вкладки после нажатия кнопки “Завершение”\\
+          \sr{Новые элементы этого окна описаны в таблице \ref{driver_app_taximeter_tab_after_end_button_elements}.}\\
+          PRIOR: MODERATE\\}
 
-        \subparagraph{Стоимость поездки} \label{taximeter_functional_drive_costs}
+        \item{
+          TITLE: Расположение элементов\\
+          \sr{Окно условно делится на три части, расположенных одна под другой.}\\
+          \sr{В верхней части в два ряда расположены элементы ELTAX-\ref{driver_element_driver_balance}, ELTAX-\ref{driver_element_driver_pozyvnoy}, ELTAX-\ref{driver_element_driver_auth_state}, ELTAX-\ref{driver_element_driver_curr_coords}, ELTAX-\ref{driver_element_this_order_time_after_end_button}, ELTAX-\ref{driver_element_this_order_dist_after_end_button}.}\\
+          \sr{В средней части расположен элемент ELTAX-\ref{driver_element_order_costs_after_end_button}.}\\
+          \sr{В нижней части расположен элементы ELTAX-\ref{driver_element_checkout_button}, ELTAX-\ref{driver_element_change_button}.}\\
+          \sr{Слева расположена скрытая боковая панель ELTAX-\ref{driver_element_order_info}.}\\
+          PRIOR: MODERATE\\}
+      \end{itemize}
 
-        \subparagraph{Информация о текущем заказе} \label{taximeter_functional_curr_order_info}
+      \setlength{\extrarowheight}{2mm}
+        \begin{longtable}{|p{3cm}|p{3cm}|p{9cm}|}
+            
+        \caption {Новые элементы вкладки после нажатия кнопки “Завершение”} \label{driver_app_taximeter_tab_after_end_button_elements} \\
 
-      \paragraph{Нажатие кнопки “Завершение”} \label{taximeter_functional_end_button}
+          \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+          \endfirsthead
+          \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+          \endhead
 
-      \paragraph{Нажатие кнопки “Изменить”} \label{taximeter_functional_change_button}
+          \hline \eltax{driver_element_this_order_time_after_end_button}{} & Время, затраченное водителем на текущий заказ & \sr{Отображается сохраненное значение счетчика ELTAX-\ref{driver_element_this_order_time_after_start_button} после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}).}\\ [2mm]
 
-      \paragraph{Нажатие кнопки “Оплата”} \label{taximeter_functional_checkout_button}
+          \hline \eltax{driver_element_this_order_dist_after_end_button}{} & Километраж текущего заказа & \sr{Отображается сохраненное значение счетчика ELTAX-\ref{driver_element_this_order_dist_after_start_button} после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}).}\\ [2mm]
 
-    3.2.3 Таксометр
-    3.2.3.1 Работа с текущим заказом
-    3.2.3.2 Просчет стоимости
+          \hline \eltax{driver_element_order_costs_after_end_button}{} & Стоимость поездки & \sr{Отображается сохраненное значение счетчика ELTAX-\ref{driver_element_order_costs} после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}).}\\ [2mm] 
+
+          \hline \eltax{driver_element_checkout_button}{} & Кнопка “Оплата” & \sr{По нажатию кнопки “Оплата”: \begin{itemize} \item Интерфейс изменяется на \ref{driver_app_taximeter_tab_first_opening}. \item Мобильное приложение делает запрос на сервер о завершении заказа, в котором передает итоговую стоимость поездки, коей является сохраненное значение счетчика ELTAX-\ref{driver_element_order_costs} после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}) или после изменения значения этого счетчика с помощью кнопки “Изменить”(ELTAX-\ref{driver_element_change_button}). В ответе сервер присваивает водителю статус “Свободен”. \item Все вкладки приложения вновь становятся активными. \end{itemize}}\\ [2mm]
+
+          \hline  \eltax{driver_element_change_button}{} & Кнопка “Изменить” & По нажатию кнопки “Изменить” становится возможным изменение счетчика ELTAX-\ref{driver_element_order_costs} вручную, но только в большую сторону. \\ [2mm]
+
+          \hline
+
+        \end{longtable}
 
   \subsection{Заказы} \label{driver_app_orders_tab}
 
