@@ -86,7 +86,7 @@
 
         \end{itemize}        
 
-        \begin{table}
+        \begin{table}[h]
           \begin{center}
           \caption{Элементы окна авторизации}
           \label{driver_app_authorization_tab_elements}
@@ -103,9 +103,9 @@
 
              \hline \eltax{driver_element_auth_remember}{} & Запомнить & \sr{Chechbox. При наличии флажка в checkbox-е, введенные водителем логин и пароль сохраняются при следующем входе в приложение. При отсутствии флажка, введенные данные не сохраняются.}\\ [2mm]    
 
-             \hline \eltax{driver_element_auth_enter}{} & Войти & \sr{Кнопка. При нажатии на кнопку “Войти” на сервер отправляются: \begin{itemize} \item Введенные водителем в поля “Логин” и “Пароль” данные; \item Состояние флажка “Запомнить”; \item Выбранный элемент из списка “Компания”. \end{itemize} На сервере происходит проверка введенных данных, и если они валидны, происходит авторизация водителя. Если данные не проходят валидацию, приложение возвращает водителя обратно на окно авторизации, и водителю вновь необходимо ввести данные.}\\ [2mm]
+             \hline \eltax{driver_element_auth_enter}{} & Кнопка “Войти” & \sr{При нажатии на кнопку “Войти” на сервер отправляются: \begin{itemize} \item Введенные водителем в поля “Логин” и “Пароль” данные; \item Состояние флажка “Запомнить”; \item Выбранный элемент из списка “Компания”. \end{itemize} На сервере происходит проверка введенных данных, и если они валидны, происходит авторизация водителя. Если данные не проходят валидацию, приложение возвращает водителя обратно на окно авторизации, и водителю вновь необходимо ввести данные.}\\ [2mm]
 
-             \hline \eltax{driver_element_auth_autonom}{} & Работать автономно & \sr{Кнопка. При нажатии на кнопку “Работать автономно”, на сервер не отправляется никаких данных и авторизация не происходит. Приложение возвращает водителя на вкладку “Таксометр”.}\\ [2mm]
+             \hline \eltax{driver_element_auth_autonom}{} & Кнопка “Работать автономно” & \sr{При нажатии на кнопку “Работать автономно”, на сервер не отправляется никаких данных и авторизация не происходит. Приложение возвращает водителя на вкладку “Таксометр”.}\\ [2mm]
 
              \hline
           \end{tabular}
@@ -158,7 +158,7 @@
 
           \hline \eltax{driver_element_driver_state}{} & Состояние водителя & \sr{Отображается состояние водителя. Есть два состояния: \begin{itemize} \item “Свободен” - отображается, когда у водителя нету активных заказов. \item “Занят” - отображается, когда у водителя есть активный заказ. \end{itemize}}\\ [2mm]
 
-          \hline \eltax{driver_element_start_button}{} & Кнопка “Старт” & \sr{По нажатию кнопки “Старт” интерфейс вкладки становится таким, как описано в \ref{driver_app_taximeter_tab_after_start_button}.}\\ [2mm]
+          \hline \eltax{driver_element_start_button}{} & Кнопка “Старт” & \sr{По нажатию кнопки “Старт” интерфейс вкладки становится таким, как описано в разделе \ref{driver_app_taximeter_tab_after_start_button}.}\\ [2mm]
 
           \hline
 
@@ -199,17 +199,17 @@
 
           \hline \eltax{driver_element_order_costs}{} & Стоимость поездки & \sr{Отображается счетчик стоимости поездки в формате [Значение счетчика] + [руб.]. Значения счетчика изменяются по формуле: ([Стоимость одной минуты в рублях] * [Время, затраченное водителем на текущий заказ]). Значение счетчика нельзя изменить вручную. }\\ [2mm]
 
+          \hline \eltax{driver_element_order_info}{} & Информация о заказе & \sr{Выдвигаемая панель. В этой панели находятся следующие элементы: \begin{itemize} \item Заголовок - [“Информация о текущем заказе”] \item “Время” - на какое время назначен заказ. \item “Откуда” - адрес, откуда начинается выполнение заказа. \item “Куда” - адрес конечного места назначения заказа. \item “Примечания” - указываются какие-либо требования к обслуживанию. \end{itemize}}\\ [2mm]
+
           \hline \eltax{driver_element_end_button}{} & Кнопка “Завершить” & \sr{По нажатию кнопки “Завершить”: 
           \begin{itemize} 
-            \item Интерфейс вкладки становится таким, как описано в \ref{driver_app_taximeter_tab_after_end_button}. 
-            \item Прекращается изменение счетчика ELTAX-\ref{driver_element_this_order_time_after_start_button}, его значение сохраняется и отображается. 
-            \item Прекращается изменение счетчика ELTAX-\ref{driver_element_this_order_dist_after_start_button}, его значение сохраняется и отображается. 
-            \item Прекращается изменение счетчика ELTAX-\ref{driver_element_order_costs}, его значение сохраняется и отображается. 
+            \item Интерфейс вкладки становится таким, как описано в разделе \ref{driver_app_taximeter_tab_after_end_button}. 
+            \item Прекращается изменение счетчика ELTAX-\ref{driver_element_this_order_time_after_start_button}, его значение сохраняется. 
+            \item Прекращается изменение счетчика ELTAX-\ref{driver_element_this_order_dist_after_start_button}, его значение сохраняется. 
+            \item Прекращается изменение счетчика ELTAX-\ref{driver_element_order_costs}, его значение сохраняется. 
             \item Все вкладки приложения, кроме “Таксометр”, становятся неактивными. 
           \end{itemize}}\\ [2mm]
 
-          \hline \eltax{driver_element_order_info}{} & Информация о заказе & \sr{Выдвигаемая панель. В этой панели находятся следующие элементы: \begin{itemize} \item Заголовок - “ИНФОРМАЦИЯ О ТЕКУЩЕМ ЗАКАЗЕ” \item “Время” - отображается время начала выполнения заказа. \item “Откуда” - адрес, откуда началось выполнение заказа. \item “Куда” - адрес назначения заказа. \item “Примечания” - какие-либо примечания к текущему заказу. \end{itemize}}\\ [2mm]
-          
           \hline
 
         \end{longtable}      
@@ -242,13 +242,13 @@
           \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
           \endhead
 
-          \hline \eltax{driver_element_this_order_time_after_end_button}{} & Время, затраченное водителем на текущий заказ & \sr{Отображается сохраненное значение счетчика ELTAX-\ref{driver_element_this_order_time_after_start_button} после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}).}\\ [2mm]
+          \hline \eltax{driver_element_this_order_time_after_end_button}{} & Время, затраченное водителем на текущий заказ & \sr{Отображается сохраненное после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}) значение счетчика ELTAX-\ref{driver_element_this_order_time_after_start_button} .}\\ [2mm]
 
-          \hline \eltax{driver_element_this_order_dist_after_end_button}{} & Километраж текущего заказа & \sr{Отображается сохраненное значение счетчика ELTAX-\ref{driver_element_this_order_dist_after_start_button} после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}).}\\ [2mm]
+          \hline \eltax{driver_element_this_order_dist_after_end_button}{} & Километраж текущего заказа & \sr{Отображается сохраненное после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}) значение счетчика ELTAX-\ref{driver_element_this_order_dist_after_start_button} .}\\ [2mm]
 
-          \hline \eltax{driver_element_order_costs_after_end_button}{} & Стоимость поездки & \sr{Отображается сохраненное значение счетчика ELTAX-\ref{driver_element_order_costs} после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}).}\\ [2mm] 
+          \hline \eltax{driver_element_order_costs_after_end_button}{} & Стоимость поездки & \sr{Отображается сохраненное после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button} значение счетчика ELTAX-\ref{driver_element_order_costs} ).}\\ [2mm] 
 
-          \hline \eltax{driver_element_checkout_button}{} & Кнопка “Оплата” & \sr{По нажатию кнопки “Оплата”: \begin{itemize} \item Интерфейс изменяется на \ref{driver_app_taximeter_tab_first_opening}. \item Мобильное приложение делает запрос на сервер о завершении заказа, в котором передает итоговую стоимость поездки, коей является сохраненное значение счетчика ELTAX-\ref{driver_element_order_costs} после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}) или после изменения значения этого счетчика с помощью кнопки “Изменить”(ELTAX-\ref{driver_element_change_button}). В ответе сервер присваивает водителю статус “Свободен”. \item Все вкладки приложения вновь становятся активными. \end{itemize}}\\ [2mm]
+          \hline \eltax{driver_element_checkout_button}{} & Кнопка “Оплата” & \sr{По нажатию кнопки “Оплата”: \begin{itemize} \item Интерфейс изменяется на такой, как описано в разделе \ref{driver_app_taximeter_tab_first_opening}. \item Мобильное приложение делает запрос на сервер о завершении заказа, в котором передает итоговую стоимость поездки, коей является сохраненное значение счетчика ELTAX-\ref{driver_element_order_costs} после нажатия кнопки “Завершение”(ELTAX-\ref{driver_element_end_button}) или после изменения значения этого счетчика с помощью кнопки “Изменить”(ELTAX-\ref{driver_element_change_button}). В ответе сервер присваивает водителю статус “Свободен”. \item Все вкладки приложения вновь становятся активными. \end{itemize}}\\ [2mm]
 
           \hline  \eltax{driver_element_change_button}{} & Кнопка “Изменить” & По нажатию кнопки “Изменить” становится возможным изменение счетчика ELTAX-\ref{driver_element_order_costs} вручную, но только в большую сторону. \\ [2mm]
 
@@ -260,61 +260,106 @@
 
     DESC: При нажатии на вкладку “Заказы” отображается страница со свободными заказами, вложенной вкладкой переключения на зарезервированные заказы и картой.
 
-    \subsubsection{Общие требования}
-
-    \subsubsection{Интерфейс вкладки}
-
-    \subsubsection{Функциональные требования}
-
       \begin{itemize}
 
         \item{
-          TITLE: Получение заказов\\
+          TITLE: Элементы вкладки\\
+          \sr{Элементы этого окна описаны в таблице \ref{driver_app_orders_tab}.}\\
+          PRIOR: MODERATE\\}
+
+        \item{
+          TITLE: Расположение элементов\\
+          \sr{Окно делится на две части условной вертикальной линией.}\\
+          \sr{У левого края окна находятся элементы ELTAX-\ref{orders_tab_element_free_orders}, ELTAX-\ref{orders_tab_element_rezerv_orders}.}\\
+          \sr{В левой части находится элемент ELTAX-\ref{orders_tab_element_order}.}\\
+          \sr{В правой части находится элемент ELTAX-\ref{orders_tab_element_map}.}\\
+          PRIOR: MODERATE\\}
+
+        \item{
+          TITLE: Общие требования к функционалу\\
           \sr{Мобильное приложение принимает от сервера информацию о заказах, доступных водителю.}\\
+          \sr{При приёме водителем какого-либо заказа мобильное приложение отправляет сообщение на сервер о закреплении заказа за водителем. Затем сервер присылает ответ о том, что заказ закреплен/не закреплен за водителем.}\\
           PRIOR: MODERATE\\}
-
-        \item{
-          TITLE: Отображение заказов\\
-          \sr{Свободные заказы отображаются во вложенной вкладке “Заказы” и отсортированы по срочности и времени подачи.}\\
-          PRIOR: MODERATE\\}
-
-        \item{
-          TITLE: Просмотр заказа\\
-          \sr{При нажатии на заказ всплывает модальное окно, где водитель может принять заказ или скрыть окно.}\\
-          PRIOR: MODERATE\\}
-
-        \item{
-          TITLE: Закрепление заказа за водителем\\
-          \sr{При приёме водителем какого-либо заказа мобильное приложение отправляет запрос на сервер о закреплении заказа за водителем. Затем сервер присылает ответ о том, что заказ закреплен/не закреплен за водителем.}\\
-          PRIOR: MODERATE\\}
-
-        \item{
-          TITLE: Начало выполнения срочного заказа\\
-          \sr{Если заказ срочный, то при нажатии кнопки “Принять” происходит переход на вкладку “Таксометр” (описание - \ref{driver_app_taximeter_tab}) для выполнения текущего заказа.}\\
-          PRIOR: MODERATE\\}
-
-        \item{
-          TITLE: Начало выполнения предварительного заказа\\
-          \begin{itemize}
-
-            \item \sr{Если заказ предварительный, он перемещается во вкладку “Резерв” (описание - \ref{order_interface_rezerv}).}\\
-
-            \item \sr{Водитель может брать заказы, время выполнения которых не превышает максимальное время срочного заказа. Время выполнения заказа учитывает время, которое потребуется водителю, чтобы добраться от конечной точки возможного заказа до начальной точки зарезервированного.}\\
-
-            \item \sr{Водитель сам может настроить время, когда ему будет приходить напоминание о зарезервированном заказе в виде всплывающего окна (описание - \ref{order_interface_alarm_rezerv}). с информацией о заказе и двумя кнопками: “Скрыть”, “Приступить к заказу”. Те же действия происходят и при нажатии на заказ во вкладке “Резерв”.}\\
-
-            \item \sr{Кнопка “Скрыть” скрывает модальное окно.}\\
-
-            \item \sr{При нажатии на кнопку “Приступить к заказу” происходит переход на вкладку “Таксометр” (описание - \ref{driver_app_taximeter_tab}) для выполнения заказа.}\\
-
-          \end{itemize}
-          PRIOR: MODERATE\\}
-          
-
-
       \end{itemize}
 
-    экран Заказа
+      %%%Таблица описания вкладки “Заказы”
+      \begin{table}[h]
+        \begin{center}
+        \caption {Элементы вкладки “Заказы”}
+        \label{driver_app_orders_tab}
+        \setlength{\extrarowheight}{2mm}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+          \hline     \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+
+          \hline \eltax{orders_tab_element_free_orders}{} & Вложенная вкладка “Свободные” & \sr{По входу в эту вкладку отображаются все свободные заказы (ELTAX-\ref{orders_tab_element_order}), они отсортированы по срочности и времени подачи.}\\ [2mm]
+
+          \hline \eltax{orders_tab_element_rezerv_orders}{} & Вложенная вкладка “Резерв” & \sr{По входу в эту вкладку отображаются все предварительные заказы (ELTAX-\ref{orders_tab_element_order}).}\\ [2mm]
+
+          \hline \eltax{orders_tab_element_order}{} & Список заказов & \sr{Список состоит из карточек “Заказ” (описание в разделе \ref{orders_tab_element_order_description}).} \\ [2mm]
+            
+          \hline \eltax{orders_tab_element_map}{} & Карта & \sr{Яндекс карта. На ней специальными отметками отображается текущее местоположение водителя и места, где появляются заказы.}\\ [2mm]
+
+          \hline
+        \end{tabular}
+        \end{center}
+      \end{table}
+
+      \subsubsection{Карточка “Заказ”}  \label{orders_tab_element_order_description}
+
+          DESC: Заказы в списке отображаются в виде карточек.
+
+          \begin{itemize}
+              
+              \item{
+                TITLE: Элементы карточки “Заказ”\\
+                \sr{Элементы карточки “Заказ” описаны в таблице \ref{orders_tab_element_table_order_description}.}\\
+                PRIOR: MODERATE\\}
+                
+              \item{  
+                TITLE: Расположение элементов карточки\\
+                \sr{Окно условно делится на четыре строки.}\\
+                \sr{В первой строке находятся элементы ELTAX-\ref{orders_tab_element_order_class}, ELTAX-\ref{orders_tab_element_order_type}.}\\
+                \sr{Во второй строке находятся элементы ELTAX-\ref{orders_tab_element_order_from}, ELTAX-\ref{orders_tab_element_order_time_come_in}.}\\
+                \sr{В третьей строке находятся элементы ELTAX-\ref{orders_tab_element_order_where_now}, ELTAX-\ref{orders_tab_element_order_time_to_aim}.}\\
+                \sr{В четвертой строке находятся элементы ELTAX-\ref{orders_tab_element_order_demands}, ELTAX-\ref{orders_tab_element_order_dist_to_aim}.}\\
+                PRIOR: MODERATE\\}
+
+              \item{
+                TITLE: Общие требования к карточке “Заказ”\\
+                \sr{При нажатии на любую карточку “Заказ” из списка появляется элемент ELTAX-\ref{orders_tab_element_order_modal_window}. Если водитель принимает заказ от Яндекс.Такси, то на карточку заказа, который принял водитель, добавляется прелоадер. }\\
+                PRIOR: MODERATE\\}
+   
+            \end{itemize} 
+
+            %%%Таблица описания карточки “Заказ”
+            \setlength{\extrarowheight}{2mm}
+              \begin{longtable}{|p{3cm}|p{3cm}|p{9cm}|}
+              \caption {Элементы формы “Заказ”} \label{orders_tab_element_table_order_description}\\
+
+                \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+                \endfirsthead
+                \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+                \endhead
+
+                \hline  \eltax{orders_tab_element_order_class}{} & Класс заказа & \sr{Существует три класса заказов: \begin{itemize} \item Эконом \item Комфорт \item Бизнес \end{itemize}}\\ [2mm]
+                \hline  \eltax{orders_tab_element_order_type}{} & Тип заказа & \sr{Существует два вида заказов: \begin{itemize} \item Срочный \item Предварительный \end{itemize}} \\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_from}{} & Куда & \sr{Отображается адрес источника заказа.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_time_come_in}{} & Время поступления заказа & \sr{Отображается время, когда появился заказ.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_where_now}{} & Откуда & \sr{Отображается адрес текущего местоположения водителя.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_time_to_aim}{} & Время до источника заказа & \sr{Отображается время, необходимое водителю для того, чтобы добраться до источника заказа. Просчитывается Яндекс.Навигатором.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_demands}{} & Примечания (требования) к заказу & \sr{Отображаются дополнительные требования к выполнению заказа.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_dist_to_aim}{} & Расстояние до источника заказа & \sr{Отображается расстояние в формате [км,м] до источника заказа. Просчитывается Яндекс.Навигатором.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_modal_window}{} & Модальное окно приёма заказа & \sr{Содержит следующие элементы: \begin{itemize} \item Заголовок - [“Принять заказ?”] \item Тип заказа \item Класс заказа \item Адрес, откуда поступил заказ \item На какое время назначен заказ \item Кнопка “Принять” - принять выбранный заказ \item Кнопка “Отменить” - скрыть выбранный заказ \end{itemize}}\\ [2mm]
+
+                \hline
+              \end{longtable}
 
   \subsection{Навигатор} \label{driver_app_navigator_tab}
 
@@ -325,7 +370,7 @@
       \begin{itemize}
         \item{
           TITLE: Запуск навигатора.\\
-          \sr{При нажатии на вкладку "Навигатор", на устройстве запускается приложение "Яндекс.Навигатор". Если приложение не установлено, то пользователю предлагается загрузить приложение на устройство из Play Market}\\
+          \sr{При нажатии на вкладку "Навигатор", на устройстве запускается приложение "Яндекс.Навигатор". Если приложение не установлено, то пользователю предлагается загрузить приложение на устройство из Play Market.}\\
           PRIOR: MODERATE\\}
 
         \item{
