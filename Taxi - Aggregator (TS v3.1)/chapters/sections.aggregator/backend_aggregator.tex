@@ -287,4 +287,62 @@
 
 		\subsubsection{Обработка заказов Яндекс.Такси}
 
+			\begin{table}[h]
+	         	\begin{center}
+	        	\caption {Действия сервера агрегатора при обработке заказов Яндекс.Такси.}
+	         	\label{order_from_yandex_actions_table}
+	         	\setlength{\extrarowheight}{2mm}
+	         	\begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+	            	\hline \textbf{ID} & \textbf{Название}&\textbf{Действие сервера} \\ [2mm]
+
+
+	             	\hline \srvact{act_robot_check}{} & Проверка на робота &  Проверка n-ого количества водителей на наличие включенных роботов. \\ [2mm]
+	             	\hline \srvact{act_messege_about_order_readiness}{} & Сообщение о готовности выполнить заказ & Агрегатор отсылает сервису Яндекс.Такси сообщение о готовности водителя в ответ на запрос с предложением заказа. \\ [2mm]
+	             	\hline \srvact{act_order_on_driver_fix}{} & Закреплении заказа & Яндекс.Такси присылает запрос, закрепляющий заказ за водителем.  Агрегатор уведомляет об этом Службу Такси.  \\ [2mm]
+
+	             	\hline
+	         	\end{tabular}
+	         	\end{center}
+     		\end{table}
+
+			\paragraph{Обработка срочных заказов} \mbox{} \\
+
+				TITLE: Алгоритм обработки срочного заказа.\\
+				\sr{При предложении срочного заказа агрегатор выполняет ALG-\ref{alg_yandex_express_order}}\\
+				PRIOR: MODERATE\\
+
+				\begin{alg}[Алгоритм обработки срочных заказов Яндекс.Такси] \label{alg_yandex_express_order} \mbox{}
+
+					\begin{enumerate}
+
+						\item Предложение о срочном заказе от Яндекса приходит вместе со списком водителей выбранным Яндексом. С полученным списком агрегатор проводит SRVACT-\ref{act_robot_check}.
+
+						\item Если один или несколько водителей из списка проходит(ят) проверку, то от лица каждого из этих водителей агрегатор отправляет SRVACT-\ref{act_messege_about_order_readiness}.
+						
+						\item Остальным водителям списка агрегатор предлагает заказ, и если один или несколько водителей из списка присылают сообщение о готовности, то агрегатор отправляет SRVACT-\ref{act_messege_about_order_readiness}. 
+
+					\end{enumerate}
+
+				\end{alg}
+
+			\paragraph{Обработка несрочных или предварительных заказов} \mbox{} \\
+
+				TITLE: Алгоритм обработки несрочного заказа.\\
+				\sr{При предложении несрочного заказа агрегатор выполняет ALG-\ref{alg_yandex_preliminary_order}}\\
+				PRIOR: MODERATE\\
+
+				\begin{alg}[Алгоритм обработки несрочных заказов Яндекс.Такси] \label{alg_yandex_preliminary_order} \mbox{}
+
+					\begin{enumerate}
+
+						\item Если заказ не срочный, то Агрегатор выполняет полный цикл фильтрации описанный в разделе Службы Такси и составляет свой список водителей. 
+
+						\item С имеющимся списком водителей Агрегатор выполняет ALG-\ref{alg_yandex_express_order}.
+
+					\end{enumerate}
+
+				\end{alg}
+
+
+
 		\subsubsection{Обработка партнерских заказов}
