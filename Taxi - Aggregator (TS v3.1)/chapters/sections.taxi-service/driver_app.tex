@@ -9,36 +9,37 @@
         \sr{Мобильное приложение оповещает сервер о местоположении водителя отсылая GPS координаты с периодичностью в STAT-\ref{periodicity_transfer_coordinates_taximeter_to_server} секунд.}\\
         PRIOR: MODERATE\\}
 
+      \item{
+        TITLE: Ориентация приложения на экране устройства\\
+        \sr{Приложение имеет альбомную ориентацию.}\\
+        PRIOR: MODERATE\\}
+
     \end{itemize}
 
   \subsection{Интерфейс приложения}
-   
-    \subsubsection{Общие требования к интерфейсу}
-      \begin{itemize}
 
-        \item{
-          TITLE: Ориентация приложения на экране устройства\\
-          \sr{Приложение имеет альбомную ориентацию.}\\
-          PRIOR: MODERATE\\}
+    DESC: Описание интерфейса водительского мобильного приложения.
+       
+    TITLE: Элементы интерфейса\\
+    \sr{Элементы интерфейса перечислены и описаны в таблице \ref{app_interface}.}\\
+    PRIOR: CRITICAL\\  
 
-        \item{
-          TITLE: Элементы интерфейса\\
-          \sr{Элементы интерфейса перечислены и описаны в таблице \ref{app_interface}.}\\
-          PRIOR: MODERATE\\}
-
-      \end{itemize}
-
-    \begin{table}
+    TITLE: Расположение элементов\\
+    \sr{Вверху экрана находится элемент ELTAX-\ref{app_interface_lenta_vkladok}.}\\
+    \sr{Под элементом ELTAX-\ref{app_interface_lenta_vkladok} находится элемент ELTAX-\ref{app_interface_osn_obl}.}\\
+    PRIOR: CRITICAL\\
+    
+    \begin{table}[h]
     \begin{center}
     \caption {Интерфейс приложения}
     \label{app_interface}
     \setlength{\extrarowheight}{2mm}
-      \begin{tabular}{|p{5cm}|p{10cm}|}
-        \hline     \textbf{Название элемента}&\textbf{Описание элемента} \\ [2mm]
+      \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+        \hline     \textbf{ID}&\textbf{Название элемента}&\textbf{Описание элемента} \\ [2mm]
 
-        \hline   Лента вкладок & Находится вверху экрана. Содержит следующие вкладки: \begin{itemize} \item Таксометр. (Описание - \ref{driver_app_taximeter_tab}) \item Заказы. (Описание - \ref{driver_app_orders_tab}) \item Навигатор. (Описание - \ref{driver_app_navigator_tab}) \item Счёт. (Описание - \ref{driver_app_bill_tab}) \item Робот. (Описание - \ref{driver_app_robot_tab}) \item Настройки. (Описание - \ref{driver_app_settings_tab}) \end{itemize}\\ [2mm]
+        \hline   \eltax{app_interface_lenta_vkladok}{} & Лента вкладок & \sr{Содержит следующие вкладки: \begin{itemize} \item Таксометр. (Описание - \ref{driver_app_taximeter_tab}) \item Заказы. (Описание - \ref{driver_app_orders_tab}) \item Навигатор. (Описание - \ref{driver_app_navigator_tab}) \item Счёт. (Описание - \ref{driver_app_bill_tab}) \item Робот. (Описание - \ref{driver_app_robot_tab}) \item Настройки. (Описание - \ref{driver_app_settings_tab}) \end{itemize}}\\ [2mm]
 
-        \hline   Основная область & Находится под 'Лентой вкладок' и занимает оставшуюся часть экрана. В этой области отображается интерфейс выбранной вкладки.\\ [2mm]
+        \hline   \eltax{app_interface_osn_obl}{} & Основная область & \sr{Находится под 'Лентой вкладок' и занимает оставшуюся часть экрана. В этой области отображается интерфейс выбранной вкладки.}\\ [2mm]
 
         \hline
       \end{tabular}
@@ -264,7 +265,7 @@
 
         \item{
           TITLE: Элементы вкладки\\
-          \sr{Элементы этого окна описаны в таблице \ref{driver_app_orders_tab}.}\\
+          \sr{Элементы этого окна описаны в таблице \ref{driver_app_orders_tab_table}.}\\
           PRIOR: MODERATE\\}
 
         \item{
@@ -286,7 +287,7 @@
       \begin{table}[h]
         \begin{center}
         \caption {Элементы вкладки “Заказы”}
-        \label{driver_app_orders_tab}
+        \label{driver_app_orders_tab_table}
         \setlength{\extrarowheight}{2mm}
         \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
           \hline     \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
