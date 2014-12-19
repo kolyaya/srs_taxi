@@ -21,6 +21,15 @@
           \addtocounter{sr}{1}
           [SR-\arabic{sr}] #1%
           }
+
+    % Счетчик фильтров
+      \newcounter{flt}
+         \newcommand{\flt}[2]{%
+          \addtocounter{flt}{1}
+          \refstepcounter{flt}\label{#1}
+          [FLT-\arabic{flt}] #2%
+          }   
+
     % Счетчик действий сервера.
         \newcounter{srvact}
          \newcommand{\srvact}[2]{%
