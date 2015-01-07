@@ -28,7 +28,15 @@
           \addtocounter{flt}{1}
           \refstepcounter{flt}\label{#1}
           [FLT-\arabic{flt}] #2%
-          }   
+          }  
+
+    % Счетчик входных/выходных данных
+      \newcounter{crdt}
+         \newcommand{\crdt}[2]{%
+          \addtocounter{crdt}{1}
+          \refstepcounter{crdt}\label{#1}
+          [CRDT-\arabic{crdt}] #2%
+          }    
 
     % Счетчик действий сервера.
         \newcounter{srvact}
