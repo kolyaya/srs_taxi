@@ -1,6 +1,13 @@
 \chapter{Приложения}	\label{appendices}
 
+\renewcommand{\appendix}{%
+  \par
+  \setcounter{section}{0}%
+  \renewcommand{\thesection}{\thechapter.\Alph{section}}%
+}
+
 \appendix
+
 	\input{chapters/sections.appendices/protocol_YaTaxi}
 	\input{chapters/sections.appendices/protocol_partners}
 	\input{chapters/sections.appendices/adaptive_alg_orders_distr}
