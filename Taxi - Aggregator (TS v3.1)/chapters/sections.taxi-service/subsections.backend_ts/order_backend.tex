@@ -49,6 +49,29 @@
 
   \subsubsection{Сервисы заказа} \mbox{} \\ \label{}
 
+    \paragraph{Входные/Выходные данные сервисов} \mbox{} \\ \label{}
+
+      \begin{table} 
+         \begin{center}
+         \caption {Входные/Выходные данные сервисов}
+         \label{}
+         \setlength{\extrarowheight}{2mm}
+         \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+             \hline \textbf{ID} & \textbf{Данные}&\textbf{Описание/Требования} \\ [2mm]
+
+            \hline \crdt{crdt_order}{}    & Заказ & \\ [2mm]
+            \hline \crdt{crdt_driver_id}{}    & ID водителя & \\ [2mm]
+            \hline \crdt{crdt_drivers_list}{}    & Список водителей & \\ [2mm]
+            \hline \crdt{crdt_radius}{}    & Радиус & \\ [2mm]
+            \hline \crdt{}{}    & Ответ - [Не удалось закрепить] & \\ [2mm]
+            \hline \crdt{}{}    & Ответ - [Заказ закреплен]  & \\ [2mm]
+            \hline \crdt{crdt_drivers_dont_accept_the_order}{}    & Сообщение-ответ - "drivers don't accept the order" & \\ [2mm]
+
+             \hline
+         \end{tabular}
+         \end{center}
+      \end{table}
+
     \paragraph{Сервис фильтрации} \mbox{} \\ \label{driver_filters_taxi_service}
 
         \subparagraph{Входные данные} \mbox{} \\ \label{driver_filters_taxi_service_input_data}
@@ -64,9 +87,8 @@
             }
 
             \begin{itemize}
-              \item Заказ с параметрами.
-              \item Радиус поиска водителей. - [radius]
-              \item Тип заказа (Срочный/Предварительный).
+              \item Заказ (CRDT-\ref{crdt_order})
+              \item Радиус (CRDT-\ref{crdt_radius})
             \end{itemize}
 
           \end{itemize}
@@ -78,7 +100,7 @@
             \item{
 
               TITLE: Выходные данные.\\
-              \sr{В качестве выходных данных сервис возвращает список водителей.}\\
+              \sr{В качестве выходных данных сервис возвращает список водителей (CRDT-\ref{crdt_drivers_list}).}\\
               PRIOR: MODERATE\\
 
             }
@@ -200,6 +222,100 @@
           \end{longtable}
 
     \paragraph{Сервис предложения заказа} \mbox{} \\ \label{}
+
+      \subparagraph{Входные данные} \mbox{} \\ \label{driver_filters_taxi_service_input_data}
+
+        \begin{itemize}
+
+          \item{
+
+            TITLE: Входные данные.\\
+            \sr{В качестве входных данных сервис принимает данные перечисленные в списке ниже.}\\
+            PRIOR: MODERATE\\
+
+          }
+
+          \begin{itemize}
+            \item Заказ (CRDT-\ref{crdt_order})
+            \item Список водителей (CRDT-\ref{crdt_drivers_list})
+          \end{itemize}
+
+        \end{itemize}
+
+      \subparagraph{Выходные данные} \mbox{} \\
+
+        \begin{itemize}
+
+          \item{
+
+            TITLE: Выходные данные.\\
+            \sr{В качестве выходных данных сервис возвращает один вариант из данных перечисленных в списке ниже.}\\
+            PRIOR: MODERATE\\
+
+          }
+
+          \begin{itemize}
+            \item ID водителя (CRDT-\ref{crdt_driver_id})
+            \item "drivers don't accept the order" (CRDT-\ref{crdt_drivers_dont_accept_the_order})
+          \end{itemize}
+
+        \end{itemize}
+
+      \subparagraph{Процесс предложения заказа} \mbox{} \\
+
+        \begin{itemize}
+
+          \item {
+            TITLE: Процесс предложения заказа.\\
+            \sr{Процесс предложения заказа описан в ALG-\ref{alg_order_offering}.}\\
+            \sr{Операции в процессе произодяться над списком водителей((CRDT-\ref{crdt_drivers_list})).}\\
+            PRIOR: MODERATE\\
+          }
+
+        \end{itemize}
+
+        \begin{alg}[Процесс предложения заказа водителям.] \label{alg_order_offering} \mbox{}
+
+          \begin{enumerate}
+
+            \item Сервис сортирует список по РВП. - SRVACT-\ref{srvact_sort_drivers_by_rvp}.
+
+            \item Сервис предлагает заказ водителям. - SRVACT-\ref{srvact_offer_order_with_delay}.
+            
+            \item Если водитель присылает запрос на закрепление заказа или у водитель в списке помечен как "Робот", то сервис выполняет SRVACT-\ref{srvact_send_driver_id}. 
+
+            \item Если водители по списку закончились и ни один из водителей не прислал запрос на закрепление заказа, то сервис выполняет SRVACT-\ref{srvact_send_drivers_dont_accept_the_order}, после таймаута - STAT-\ref{stat_timeout_after_order_offering}.
+
+          \end{enumerate}
+
+        \end{alg}
+
+          \label{filters_table}
+          \setlength{\extrarowheight}{2mm}
+          \begin{longtable}{|p{2cm}|p{3cm}|p{10cm}|}
+
+
+            \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+            \endfirsthead
+            \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+            \endhead
+
+
+
+            \hline  \srvact{srvact_sort_drivers_by_rvp}{}  & Сортировка водителей по РВП & \sr{} \\ [2mm]
+
+            \hline  \srvact{srvact_offer_order_with_delay}{}  & Предложение с задержкой & \sr{} \\ [2mm]
+
+            \hline  \srvact{srvact_send_driver_id}{}  & Отправление ID водителя & \sr{} \\ [2mm]
+
+            \hline  \srvact{srvact_send_drivers_dont_accept_the_order}{}  & Отправление "drivers don't accept the order" & \sr{} \\ [2mm]
+
+
+
+            \hline
+
+            \caption {Фильтры}
+          \end{longtable}
 
     \paragraph{Сервис закрепления заказа} \mbox{} \\ \label{}
 
