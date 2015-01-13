@@ -1,0 +1,44 @@
+\subsubsection{Прием заказа} \mbox{} \\ \label{}
+
+    \begin{itemize}
+
+      \item{
+
+        TITLE: Источники заказов.\\
+        \sr{Служба Такси принимает и обрабатывает заказы из источников перечисленных в таблице \ref{ts_order_issue}.}\\
+        PRIOR: CRITICAL\\
+
+      }
+
+    \end{itemize}
+    
+   
+    \begin{table}
+      \begin{center}
+      \caption {Источники заказов}
+      \label{ts_order_issue}
+      \setlength{\extrarowheight}{2mm}
+      \begin{tabular}{|p{5cm}|p{10cm}|}
+        \hline     \textbf{Название источника}&\textbf{Описание} \\ [2mm]
+
+        \hline  Агрегатор & 
+        
+          \sr{Служба Такси принимает заказы от "Агрегатора"(Раздел - \ref{aggregator})  и обрабатывает их. (Раздел - \ref{selection_drivers_for_the_order})} 
+
+          \sr{Служба Такси может принимать заказы от "Агрегатора" с уже закрепленным водителем СТ. В этом случае СТ уведомляет водителя и закрепляет за ним заказ.}
+
+          \\ [2mm]
+
+         \hline  Диспетчерская СТ & 
+
+          \sr{Служба Такси принимает заказы от "Диспетчерской"(Раздел - \ref{dispatching}) и обрабатывает их. (Раздел - \ref{selection_drivers_for_the_order})} 
+
+          \\ [2mm]
+
+         \hline  Мобильное приложение (пассажирское) СТ  & -ЭТА ЧАСТЬ НАХОДИТСЯ В РАЗРАБОТКЕ- \\ [2mm]
+
+         \hline  Веб-сайт СТ & -ЭТА ЧАСТЬ НАХОДИТСЯ В РАЗРАБОТКЕ- \\ [2mm]
+         \hline
+      \end{tabular}
+      \end{center}
+    \end{table}
