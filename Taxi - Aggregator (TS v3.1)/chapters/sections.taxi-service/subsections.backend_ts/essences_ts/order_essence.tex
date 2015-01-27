@@ -1,0 +1,78 @@
+\subsubsection{Заказ} \label{order_essence}
+
+	TITLE: Сущность "Заказ"\\
+	\sr{Сущность "Заказ" содержит поля описанные в таблице \ref{table_order_essence}.}\\
+	PRIOR: MODERATE\\
+
+	\setlength{\extrarowheight}{2mm}
+	\begin{longtable}{|p{4cm}|p{9cm}|}
+	\caption {Поля сущности заказ}\\
+
+	\hline     \textbf{Поле}&\textbf{Описание/Требования} \\ [2mm]
+	\endfirsthead
+	\hline     \textbf{Поле}&\textbf{Описание/Требования} \\ [2mm]
+	\endhead
+
+	\hline  ID Заказа   & \sr{ID генерируется при создании заказа.}\\ [2mm]
+	\hline  Временной тип заказа   & \sr{Это поле заполняется при создании заказа на основе правил описанных в разделе \ref{subessence_time_order_type}.}\\ [2mm]
+	\hline  Адресный тип заказа   & \sr{Это поле заполняется при создании заказа на основе правил описанных в разделе \ref{subessence_adress_order_type}.}\\ [2mm]
+	\hline  Адрес подачи   & \\ [2mm]
+	\hline  Адрес прибытия   & \\ [2mm]
+	\hline  Тариф   & \\ [2mm]
+	\hline  Пассажир   & \\ [2mm]
+	\hline  Водитель   & \\ [2mm]
+	\hline  Статус   & \\ [2mm]
+	\hline  Лог изменений   & \\ [2mm]
+	\hline  Доп. услуги   & \\ [2mm]
+	\hline  Комментарии/Ориентир   & \\ [2mm]
+	\hline  Особые условия   & \\ [2mm]
+	\hline
+
+	\label{table_order_essence}
+	\end{longtable}
+
+	\paragraph{Временные типы заказа} \mbox{} \label{subessence_time_order_type} \\ 
+
+		TITLE: Определение временного типа заказа.\\
+		\sr{Временные типы заказа перечислены в таблице \ref{table_subessence_time_order_type}}\\
+		\sr{Временной тип заказа определяется на основе правил описанных в таблице \ref{table_subessence_time_order_type}}
+		PRIOR: CRITICAL\\
+
+		\begin{table}
+			\begin{center}
+			\caption {Временные типы заказа.}
+			\label{table_subessence_time_order_type}
+			\setlength{\extrarowheight}{2mm}
+			\begin{tabular}{|p{5cm}|p{10cm}|}
+
+			\hline     \textbf{Тип}&\textbf{Правило для установления типа} \\ [2mm]
+
+			\hline  Срочный   & \sr{Если от источника поступает заказ с пометкой "Срочный", то заказу присваивается тип "Срочный".}\\ [2mm]
+			\hline  Предварительным   & \sr{Если от источника поступает заказ с конкретно указанным временем подачи, тогда заказ является "Предварительным".}\\ [2mm]
+			\hline
+			\end{tabular}
+			\end{center}
+			\end{table}
+
+	\paragraph{Адресные типы заказа} \mbox{} \label{subessence_adress_order_type} \\ 
+
+		TITLE: Определение временного типа заказа.\\
+		\sr{Адресные типы заказа перечислены в таблице \ref{table_subessence_adress_order_type}}\\
+		\sr{Адресный тип заказа определяется на основе правил описанных в таблице \ref{table_subessence_adress_order_type}}
+		PRIOR: CRITICAL\\
+
+		\begin{table}
+			\begin{center}
+			\caption {Адресные типы заказа.}
+			\label{table_subessence_adress_order_type}
+			\setlength{\extrarowheight}{2mm}
+			\begin{tabular}{|p{5cm}|p{10cm}|}
+
+			\hline     \textbf{Тип}&\textbf{Правило для установления типа} \\ [2mm]
+
+			\hline  Городской   & \sr{Если все точки заказа в пределах МКАДа, тогда заказу присваиваится тип "Городской"}\\ [2mm]
+			\hline  Портовый   & \sr{Если одна из точек заказа находиться в пределах одного из портов, то заказу присваивается тип "Портовый"}\\ [2mm]
+			\hline
+			\end{tabular}
+			\end{center}
+			\end{table}
