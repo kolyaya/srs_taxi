@@ -35,6 +35,15 @@
             \hline \crdt{crdt_response_order_fixed}{}    & Ответ - [Заказ закреплен]  & \\ [2mm]
             \hline \crdt{crdt_drivers_dont_accept_the_order}{}    & Сообщение-ответ - "drivers don't accept the order" & \\ [2mm]
 
+            \hline \crdt{crdt_driver_auth_request}{} & Запрос на авторизацию водителя. & \sr{Запрос содержит в себе пару позывной / пароль.} \\ [2mm]
+            \hline \crdt{crdt_driver_auth_success_response}{} & Сообщение об успешной авторизации. & N/A \\ [2mm]
+            \hline \crdt{crdt_driver_auth_error_response}{} & Сообщение об ошибке авторизации.  
+                                                     & \sr{Сообщение содержит причину ошибки. Возможные причины ошибки перечислены в списке ниже.} 
+                                                     \begin{itemize}
+                                                        \item Данные переданные водителем не валидны.
+                                                     \end{itemize}
+                                                     \\ [2mm]
+
              \hline
          \end{tabular}
          \end{center}
