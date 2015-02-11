@@ -2,6 +2,30 @@
 
     DESC:  При поступлении заказа по одному из источников сервер формирует очередь из водителей и обрабатывает ее, в результате заказ будет взят на выполнение одним из них. 
 
+    \paragraph{Входные данные} \mbox{} \\ \label{}
+
+	  \begin{itemize}
+
+	    \item{
+
+	      TITLE: Входные данные.\\
+	      \sr{В качестве входных данных сервис принимает данные перечисленные в списке ниже.}\\
+	      PRIOR: MODERATE\\
+
+	    }
+
+	    \begin{itemize}
+	      \item Заказ (CRDT-\ref{crdt_order})
+	    \end{itemize}
+
+	  \end{itemize}
+
+	\paragraph{Выходные данные} \mbox{} \\
+
+		DESC: Сервис ничего не возвращает, цель работы сервиса обработать заказ и закрепить за ним водителя.
+
+
+	\paragraph{Процессы обработки заказов} \mbox{} \\
     \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/urgent_orders} 
     \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/pre_orders}
     \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/airport_orders}
