@@ -31,11 +31,11 @@
           \item Обработчик дожидается ответа от сервиса предложения заказов, и на основании его выполняет соответствующие действия.
           
           	\begin{enumerate}
-         			\item Если обработчик получает положительный ответ + [ID водителя] (CRDT-\ref{crdt_driver_id}), то обработчик вызывает сервис закрепления заказов - SRVACT-\ref{srvact_call_fasten_order_service}. В качестве аргументов передает: 
+         			\item Если обработчик получает положительный ответ + [ID водителя] (CRDT-\ref{crdt_driver_id}), то обработчик вызывает сервис закрепления заказов - SRVACT-\ref{srvact_call_fasten_order_service} и переходит к следующему пункту процесса. В качестве аргументов передает: 
 
            			\begin{enumerate}
              			\item Заказ (CRDT-\ref{crdt_order})
-     					\item ID водителя (CRDT-\ref{crdt_driver_id}), полеченный от сервиса предложения заказов.
+     					    \item ID водителя (CRDT-\ref{crdt_driver_id}), полеченный от сервиса предложения заказов.
              		\end{enumerate}
 
          			\item Если обработчик получает ответ "drivers don't accept the order" (CRDT-\ref{crdt_drivers_dont_accept_the_order}), то обработчик начинает процесс ALG-\ref{alg_urgent_order_processing} заново. В качестве аргументов передает: 
