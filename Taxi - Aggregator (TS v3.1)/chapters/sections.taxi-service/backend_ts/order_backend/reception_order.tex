@@ -1,4 +1,4 @@
-\subsubsection{Прием заказа} \mbox{} \\ \label{}
+\subsubsection{Прием заказа} \mbox{} \\ \label{service_reception_order}
 
     DESC: Сервис приема заказа обрабатывает полученные от различных источников запросы на создание заказа в Службе Такси. 
 
@@ -20,13 +20,13 @@
 
         \begin{itemize}
 
-             \item {
-               TITLE: Процесс сервиса.\\
-               \sr{Процесс сервиса описан в ALG-\ref{alg_reception_order_service}.}\\
-               PRIOR: MODERATE\\
-             }
+         \item {
+           TITLE: Процесс сервиса.\\
+           \sr{Процесс сервиса описан в ALG-\ref{alg_reception_order_service}.}\\
+           PRIOR: MODERATE\\
+         }
 
-             \end{itemize}
+         \end{itemize}
 
         \begin{alg}[Процесс сервиса.] \label{alg_reception_order_service} \mbox{}
 
@@ -38,7 +38,7 @@
                
                     \item Если данные валидны, то происходит переход к следующему шагу процедуры.
                
-                    \item Если данные не валидны, то сервис возвращает ошибку источнику заказа.
+                    \item Если данные не валидны, то сервис возвращает ошибку источнику заказа. - SRVACT-\ref{srvact_error_data_response_to_issue_order_creation}
                
                   \end{enumerate}
                
@@ -72,11 +72,14 @@
                                     \end{itemize}
                                \\ [2mm]
 
-          \hline  \srvact{srvact_create_new_order}{}  & Создание заказа в системе Службы Такси. & \sr{В рамках создания заказа сервис формирует поля на основе правил описанных в разделе \ref{order_essence}}. \\ [2mm]
+          \hline  \srvact{srvact_error_data_response_to_issue_order_creation}{}  & Возврат ошибки источнику при невалидных данных. & \sr{Сервис возвращает ошибку источнику заказа.} \\ [2mm]
 
-          \hline  \srvact{srvact_change_order_status_on_new}{}  & Присвоение заказу статус "Новый". & \sr{В рамках действия происходит вызов микросервиса обработки статусов заказа (Раздел - \ref{service_order_status_processing}).} \\ [2mm]
+          \hline  \srvact{srvact_create_new_order}{}  & Создание заказа в системе Службы Такси. 
+            & \sr{В рамках создания заказа сервис формирует поля на основе правил описанных в разделе \ref{order_essence}}. \\ [2mm]
 
-          \hline  \srvact{srvact_notify_order_processing_service_about_success_order_recept}{}  & Уведомление сервиса-координатора заказа об успешном приеме заказа в систему. & \sr{} \\ [2mm]
+          \hline  \srvact{srvact_change_order_status_on_new}{}  & Присвоение заказу статус "Новый". & \sr{Вызов микросервиса обработки статусов заказа (Раздел - \ref{service_order_status_processing}) с передачей параметров ([ID заказа] + [Статус "Новый"]).} \\ [2mm]
+
+          \hline  \srvact{srvact_notify_order_processing_service_about_success_order_recept}{}  & Уведомление сервиса-координатора заказов. & \sr{Сервис оповещает сервис-координатор заказов о том что заказ принят в систему и готов для последующей обработки.} \\ [2mm]
 
 
 
