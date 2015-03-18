@@ -12,10 +12,10 @@
 
         }
 
-        \begin{itemize}
-          \item ID заказа
-          \item Статус изменения
-        \end{itemize}
+          \begin{itemize}
+            \item [ID заказа] (CRDT-\ref{crdt_order_id})
+            \item [Статус заказа (изменения)] (CRDT-\ref{crdt_order_status})
+          \end{itemize}
 
       \end{itemize}
 
@@ -31,10 +31,10 @@
 
         }
 
-        \begin{itemize}
-          \item Ответ - [Order status changed successfully]
-          \item Ответ - [Error order status change]
-        \end{itemize}
+          \begin{itemize}
+            \item [Ответ - [Order status changed successfully]] (CRDT-\ref{crdt_response_order_status_changed_successfully})
+            \item [Ответ - [Error order status change]] (CRDT-\ref{crdt_response_order_fixed_error_order_status_change})
+          \end{itemize}
 
       \end{itemize}
 
@@ -90,16 +90,18 @@
 
 
 
-          \hline  \srvact{srvact_check_the_order_status_changes}{}  & Проверка порядка изменения статуса. & \sr{} \\ [2mm]
+          \hline  \srvact{srvact_check_the_order_status_changes}{}  & Проверка порядка изменения статуса. & 
+            \sr{Сервис проверяет порядок изменения статуса, взяв за условие что порядковый номер нового статуса должен быть должен быть больше порядкового номера текущего статуса заказа.} 
+            \sr{Порядковые номера статусов описаны в таблице \ref{table_order_status}.} \\ [2mm]
 
-          \hline  \srvact{srvact_set_new_status}{}  & Установка нового статуса заказу. & \sr{} \\ [2mm]
+          \hline  \srvact{srvact_set_new_status}{}  & Установка нового статуса заказу. & \sr{Сервис присваивает заказу статус присланный во входных данных.} \\ [2mm]
 
-          \hline  \srvact{srvact_send_response_about_success_status_change}{}  & Отправка ответа - [Order status changed successfully] & \sr{} \\ [2mm]
+          \hline  \srvact{srvact_send_response_about_success_status_change}{}  & Отправка ответа - [Order status changed successfully] & \sr{Сервис отправляет ответ вызвавшему его сервису сообщение об успешной смене статуса.} \\ [2mm]
 
-          \hline  \srvact{srvact_send_response_about_error_status_change}{}  & Отправка ответа - [Error order status change] & \sr{} \\ [2mm]
+          \hline  \srvact{srvact_send_response_about_error_status_change}{}  & Отправка ответа - [Error order status change] & \sr{Сервис отправляет ответ вызвавшему его сервису сообщение об ошибке при смене статуса.} \\ [2mm]
 
           \hline
-
+  
           \caption {Действия сервиса обработки статусов заказа.}
         \end{longtable}
 

@@ -1,5 +1,7 @@
 \subsubsection{Входные/Выходные данные сервисов} \mbox{} \\ \label{}
 
+    DESC: 
+
       \begin{table} 
          \begin{center}
          \caption {Входные/Выходные данные сервисов}
@@ -9,9 +11,10 @@
              \hline \textbf{ID} & \textbf{Данные}&\textbf{Описание/Требования} \\ [2mm]
 
             \hline \crdt{crdt_order}{}    & Заказ & \\ [2mm]
+            \hline \crdt{crdt_order_id}{}    & ID Заказа & \\ [2mm]
             \hline \crdt{crdt_driver_id}{}    & ID водителя & \\ [2mm]
             \hline \crdt{crdt_drivers_list}{}    & Список водителей & \\ [2mm]
-
+            \hline \crdt{crdt_order_status}{}    & Статус заказа & \\ [2mm]
             \hline \crdt{crdt_radius}{}    & Радиус поиска & 
 
                             \caption {Радиусы поиска водителей.}
@@ -33,6 +36,8 @@
 
             \hline \crdt{crdt_response_unable_to_fix}{}    & Ответ - [Не удалось закрепить] & \\ [2mm]
             \hline \crdt{crdt_response_order_fixed}{}    & Ответ - [Заказ закреплен]  & \\ [2mm]
+            \hline \crdt{crdt_response_order_status_changed_successfully}{}    & Ответ - [Order status changed successfully]  & \\ [2mm]
+            \hline \crdt{crdt_response_order_fixed_error_order_status_change}{}    & Ответ - [Error order status change]  & \\ [2mm]
             \hline \crdt{crdt_drivers_dont_accept_the_order}{}    & Сообщение-ответ - "drivers don't accept the order" & \\ [2mm]
 
             \hline \crdt{crdt_driver_auth_request}{} & Запрос на авторизацию водителя. & \sr{Запрос содержит в себе пару позывной / пароль.} \\ [2mm]
