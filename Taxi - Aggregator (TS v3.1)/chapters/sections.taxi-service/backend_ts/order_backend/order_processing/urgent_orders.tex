@@ -3,46 +3,46 @@
   \begin{itemize}
 
        \item {
-         TITLE: Процесс сервиса.\\
-         \sr{Процесс сервиса описан в ALG-\ref{alg_urgent_order_processing}.}\\
+         TITLE: Процесс обработки срочного заказа.\\
+         \sr{Процесс описан в ALG-\ref{alg_urgent_order_processing}.}\\
          PRIOR: MODERATE\\
        }
 
        \end{itemize}
 
-  \begin{alg}[Процесс сервиса.] \label{alg_urgent_order_processing} \mbox{}
+  \begin{alg}[Процесс обработки срочного заказа.] \label{alg_urgent_order_processing} \mbox{}
 
       \begin{enumerate}
 
-         	\item Обработчик вызывает сервис фильтрации - SRVACT-\ref{srvact_call_filter_service}. В качестве аргументов передает:
+         	\item Процесс вызывает сервис фильтрации - SRVACT-\ref{srvact_call_filter_service}. В качестве аргументов передает:
 
          		\begin{enumerate}
-         			\item [ID заказа] (CRDT-\ref{crdt_order_id})
-         			\item [Радиус поиска] (CRDT-\ref{crdt_radius})
+         			\item ID заказа (CRDT-\ref{crdt_order_id})
+         			\item Радиус поиска (CRDT-\ref{crdt_radius}))
          		\end{enumerate}
 
-          \item Сервис фильтрации возвращает [Список водителей (CRDT-\ref{crdt_drivers_list})]. Обработчик вызывает сервис предложения заказов - SRVACT-\ref{srvact_call_order_offering_service}. В качестве аргументов передает:
+          \item Сервис фильтрации возвращает [Список водителей (CRDT-\ref{crdt_drivers_list}). Процесс вызывает сервис предложения заказов - SRVACT-\ref{srvact_call_order_offering_service}. В качестве аргументов передает:
 
          		\begin{enumerate}
-         			\item [ID заказа] (CRDT-\ref{crdt_order_id})
-         			\item [Список водителей] (CRDT-\ref{crdt_drivers_list}), полученный от сервиса фильтрации.
+         			\item ID заказа (CRDT-\ref{crdt_order_id}))
+         			\item Список водителей (CRDT-\ref{crdt_drivers_list}), полученный от сервиса фильтрации.)
          		\end{enumerate}
         
-          \item Обработчик дожидается ответа от сервиса предложения заказов, и на основании его выполняет соответствующие действия.
+          \item Процесс дожидается ответа от сервиса предложения заказов, и на основании его выполняет соответствующие действия.
           
           	\begin{enumerate}
-         			\item Если обработчик получает положительный ответ + [ID водителя] (CRDT-\ref{crdt_driver_id}), то обработчик вызывает сервис закрепления заказов - SRVACT-\ref{srvact_call_fasten_order_service} и переходит к следующему пункту процесса. В качестве аргументов передает: 
+         			\item Если процесс получает положительный ответ + ID водителя (CRDT-\ref{crdt_driver_id}), то процесс вызывает сервис закрепления заказов - SRVACT-\ref{srvact_call_fasten_order_service} и переходит к следующему пункту процесса. В качестве аргументов передает: 
 
            			\begin{enumerate}
-             			\item [ID заказа] (CRDT-\ref{crdt_order_id})
-     					    \item [ID водителя] (CRDT-\ref{crdt_driver_id}), полеченный от сервиса предложения заказов.
+             			\item ID заказа (CRDT-\ref{crdt_order_id}))
+     					    \item ID водителя (CRDT-\ref{crdt_driver_id})), полеченный от сервиса предложения заказов.
              		\end{enumerate}
 
-         			\item Если обработчик получает ответ "drivers don't accept the order" (CRDT-\ref{crdt_drivers_dont_accept_the_order}), то обработчик начинает процесс ALG-\ref{alg_urgent_order_processing} заново. В качестве аргументов передает: 
+         			\item Если процесс получает ответ "drivers don't accept the order" (CRDT-\ref{crdt_drivers_dont_accept_the_order}), то процесс ALG-\ref{alg_urgent_order_processing} начинается заново. В качестве аргументов передает: 
 
            			\begin{enumerate}
-             			\item [ID заказа] (CRDT-\ref{crdt_order_id})
-             			\item Инкрементированный (по таблице радиусов \ref{table_of_searching_driver_radius}) [Радиус поиска] (CRDT-\ref{crdt_radius})
+             			\item ID заказа (CRDT-\ref{crdt_order_id}))
+             			\item Инкрементированный (по таблице радиусов \ref{table_of_searching_driver_radius}) Радиус поиска (CRDT-\ref{crdt_radius})
            			\end{enumerate}
            			
          		\end{enumerate}
@@ -50,10 +50,19 @@
           \item После закрепления заказа за водителем, процесс переходит в режим контроля выполнения заказа. В рамках этого режима процесс выполняет следующие действия.
 
             \begin{enumerate}
-              \item Процесс обрабатывает входящие запросы от водителей на смену статусов с порядковыми номерами 3-5 (Таблица \ref{table_order_status}). При каждом поступлении такого запроса сервис присваивает заказу новый статус. - SRVACT-\ref{srvact_change_order_status_from_order_processing_service}.
+              \item Процесс обрабатывает входящие запросы от водителей на смену статусов с порядковыми номерами 3-5 (Таблица \ref{table_order_status}). При каждом поступлении такого запроса сервис присваивает заказу новый статус. - SRVACT-\ref{srvact_change_order_status_from_order_processing_service}. В качестве аргументов передает: 
+
+                \begin{enumerate}
+                  \item ID заказа (CRDT-\ref{crdt_order_id})
+                  \item Статус (CRDT-\ref{crdt_order_status})
+                \end{enumerate} 
+
+              \item После того как заказу был присвоен статус "В пути" (порядковый номером 5), процесс ожидает от водителя запрос на смену статуса на "Завершен". При поступлении такого запроса процесс переходит к следующему шагу.
             \end{enumerate}
 
-          \item 
+          \item После поступления запроса на смену статуса на "Завершен", процесс завершает заказ по средствам вызова сервиса завершения заказов. - SRVACT-\ref{srvact_call_finish_order_service}. В качестве аргументов передает ID заказа (CRDT-\ref{crdt_order_id}).
+
+          \item После выполнения последнего шага (получения положительного ответа от сервиса завершения заказа) процесс завершается.
 
       	\end{enumerate}
 
@@ -71,13 +80,15 @@
 
 
 
-    \hline  \srvact{srvact_call_filter_service}{}  & Вызов сервиса фильтрации. (Сервис - \ref{driver_filters_taxi_service})  & \sr{} \\ [2mm]
+    \hline  \srvact{srvact_call_filter_service}{}  &  Фильтрация & \sr{Вызов микросервиса фильтрации. (Раздел - \ref{driver_filters_taxi_service})} \\ [2mm]
 
-    \hline  \srvact{srvact_call_order_offering_service}{}  & Вызов сервиса предложения заказов. (Сервис - \ref{order_offering_service}) & \sr{} \\ [2mm]
+    \hline  \srvact{srvact_call_order_offering_service}{}  & Предложение заказа & \sr{Вызов микросервиса предложения заказов. (Раздел - \ref{order_offering_service})} \\ [2mm]
 
-    \hline  \srvact{srvact_call_fasten_order_service}{}  & Вызов сервиса закрепления заказов. (Сервис - \ref{fasten_order_service}) & \sr{} \\ [2mm]
+    \hline  \srvact{srvact_call_fasten_order_service}{}  & Закрепление заказа & \sr{Вызов микросервиса закрепления заказов. (Раздел - \ref{fasten_order_service})} \\ [2mm]
 
-    \hline  \srvact{srvact_change_order_status_from_order_processing_service}  & Присвоение заказу нового статуса. & \sr{Вызов микросервиса обработки статусов заказа (Раздел - \ref{service_order_status_processing}) с передачей параметров ([ID заказа] (CRDT-\ref{crdt_order_id}) + [Статус] (CRDT-\ref{crdt_order_status})).} \\ [2mm]
+    \hline  \srvact{srvact_change_order_status_from_order_processing_service}  & Присвоение заказу нового статуса. & \sr{Вызов микросервиса обработки статусов заказа (Раздел - \ref{service_order_status_processing}).} \\ [2mm]
+
+    \hline  \srvact{srvact_call_finish_order_service}{}  & Завершение заказа & \sr{Вызов микросервиса завершения заказов. (Раздел - \ref{finish_order})} \\ [2mm]
 
 
 
