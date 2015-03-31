@@ -66,7 +66,7 @@
 
          \begin{enumerate}
 
-           \item Сервис проверяет порядок изменения статуса. - SRVACT-\ref{srvact_check_the_order_status_changes}
+            \item Сервис проверяет порядок изменения статуса. - SRVACT-\ref{srvact_check_the_order_status_changes}
 
              	\begin{enumerate}
 
@@ -76,7 +76,7 @@
 
              	\end{enumerate}
 
-           \item Сервис устанавливает заказу запрашиваемый статус. - SRVACT-\ref{srvact_set_new_status}
+            \item Сервис устанавливает заказу запрашиваемый статус. - SRVACT-\ref{srvact_set_new_status}
 
              	\begin{enumerate}
 
@@ -85,6 +85,17 @@
              		\item Если при выполнении операции возникла ошибка, то сервис отправляет сообщение - SRVACT-\ref{srvact_send_response_about_error_status_change}
 
              	\end{enumerate}
+
+            \item Сервис вызывает сервис уведомлений (Раздел-\ref{notification_service}) для рассылки уведомления о смене статуса. В качестве аргументов сервис передает: 
+
+
+              \begin{enumerate}
+
+                \item ID заказа (CRDT-\ref{crdt_order_id})
+                
+                \item 
+
+              \end{enumerate}
 
          \end{enumerate}
 
