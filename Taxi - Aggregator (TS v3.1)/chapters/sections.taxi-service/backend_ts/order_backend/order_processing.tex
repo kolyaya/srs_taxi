@@ -1,0 +1,39 @@
+\subsubsection{Сервис-координатор заказа} \label{selection_drivers_for_the_order}
+
+    DESC:  При поступлении заказа по одному из источников сервер формирует очередь из водителей и обрабатывает ее, в результате заказ будет взят на выполнение одним из них. 
+
+    \paragraph{Входные данные} \mbox{} \\ \label{}
+
+	  \begin{itemize}
+
+	    \item{
+
+	      TITLE: Входные данные - Прием заказа\\
+	      \sr{В качестве входных данных сервис принимает данные перечисленные в списке ниже.}\\
+	      PRIOR: MODERATE\\
+
+	    }
+
+		    \begin{itemize}
+		      \item Уведомление от сервиса приема заказа (Раздел-\ref{service_reception_order}) в котором содержиться [ID заказа] (CRDT-\ref{crdt_order_id}) готового для обработки.
+		    \end{itemize}
+
+	    \item{
+
+	      TITLE: Входные данные - Другие сервисы\\
+	      \sr{В этом случае сервис принимает разного рода запросы (Пример: Отмена заказа), во всех обязательно должен присутствовать [ID заказа] (CRDT-\ref{crdt_order_id}) на который направлен запрос.}\\
+	      PRIOR: MODERATE\\
+
+	    }
+
+	  \end{itemize}
+
+
+	\paragraph{Процессы обработки заказов} \mbox{} \\
+    \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/urgent_orders} 
+    \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/pre_orders}
+    \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/airport_orders}
+
+    
+
+    

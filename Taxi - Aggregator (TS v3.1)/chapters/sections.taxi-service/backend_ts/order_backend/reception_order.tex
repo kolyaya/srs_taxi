@@ -1,0 +1,120 @@
+\subsubsection{Прием заказа} \mbox{} \\ \label{service_reception_order}
+
+    DESC: Сервис приема заказа обрабатывает полученные от различных источников запросы на создание заказа в Службе Такси. 
+
+    \paragraph{Входные данные} \mbox{} \\ \label{}
+
+        \begin{itemize}
+
+          \item{
+
+            TITLE: Входные данные.\\
+            \sr{В качестве входных данных сервис принимает заказы из источников перечисленных в таблице \ref{ts_order_issue}.}\\
+            PRIOR: MODERATE\\
+
+          }
+
+        \end{itemize}
+
+    \paragraph{Процесс сервиса} \mbox{} \\
+
+        \begin{itemize}
+
+         \item {
+           TITLE: Процесс сервиса.\\
+           \sr{Процесс сервиса описан в ALG-\ref{alg_reception_order_service}.}\\
+           PRIOR: MODERATE\\
+         }
+
+         \end{itemize}
+
+        \begin{alg}[Процесс сервиса.] \label{alg_reception_order_service} \mbox{}
+
+             \begin{enumerate}
+
+               \item Сервис проверяет полученные от источников заказа данные на валидность. - SRVACT-\ref{srvact_checking_data_from_issue_on_validity}
+
+                  \begin{enumerate}
+               
+                    \item Если данные валидны, то происходит переход к следующему шагу процедуры.
+               
+                    \item Если данные не валидны, то сервис возвращает ошибку источнику заказа. - SRVACT-\ref{srvact_error_data_response_to_issue_order_creation}
+               
+                  \end{enumerate}
+               
+               \item Сервис создает заказ в системе. - SRVACT-\ref{srvact_create_new_order}
+              
+               \item Сервис присваивает заказу статус "Новый". - SRVACT-\ref{srvact_change_order_status_on_new}
+
+               \item Сервис уведомляет сервис-координатора заказов об успешном приеме заказа в систему. - SRVACT-\ref{srvact_notify_order_processing_service_about_success_order_recept}
+
+             \end{enumerate}
+
+             \end{alg}
+
+        \label{}
+        \setlength{\extrarowheight}{2mm}
+        \begin{longtable}{|p{2cm}|p{3cm}|p{10cm}|}
+
+
+          \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+          \endfirsthead
+          \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+          \endhead
+
+
+
+          \hline  \srvact{srvact_checking_data_from_issue_on_validity}{}  & Проверка данных от источника на валидность. 
+                               & \sr{Проверка выполняется по условиям перечисленным в списке ниже.} 
+                                    \begin{itemize}
+                                      \item {В присланных данных должны присутствовать обязательныей для создания заказа поля. (Описание в таблице \ref{table_order_essence})}
+                                      \item {Обязательные для создания заказа поля должны быть в валидных форматах. (Описание в таблице \ref{table_order_essence})}
+                                    \end{itemize}
+                               \\ [2mm]
+
+          \hline  \srvact{srvact_error_data_response_to_issue_order_creation}{}  & Возврат ошибки источнику при невалидных данных. & \sr{Сервис возвращает ошибку источнику заказа.} \\ [2mm]
+
+          \hline  \srvact{srvact_create_new_order}{}  & Создание заказа в системе Службы Такси. 
+            & \sr{В рамках создания заказа сервис формирует поля на основе правил описанных в разделе \ref{order_essence}}. \\ [2mm]
+
+          \hline  \srvact{srvact_change_order_status_on_new}{}  & Присвоение заказу статус "Новый". & \sr{Вызов микросервиса обработки статусов заказа (Раздел - \ref{service_order_status_processing}) с передачей параметров ([ID заказа] (CRDT-\ref{crdt_order_id}) + [Статус "Новый"] (CRDT-\ref{crdt_order_status})).} \\ [2mm]
+
+          \hline  \srvact{srvact_notify_order_processing_service_about_success_order_recept}{}  & Уведомление сервиса-координатора заказов. & \sr{Сервис оповещает сервис-координатор заказов о том что заказ принят в систему и готов для последующей обработки, в качестве параметров запроса передает [ID заказа] (CRDT-\ref{crdt_order_id})} \\ [2mm]
+
+
+
+          \hline
+
+          \caption {Действия сервиса приема заказа.}
+        \end{longtable}
+
+   
+    \begin{table}
+      \begin{center}
+      \caption {Источники заказов}
+      \label{ts_order_issue}
+      \setlength{\extrarowheight}{2mm}
+      \begin{tabular}{|p{5cm}|p{10cm}|}
+        \hline     \textbf{Название источника}&\textbf{Описание} \\ [2mm]
+
+        \hline  Агрегатор & 
+        
+          \sr{Служба Такси принимает заказы от "Агрегатора"(Раздел - \ref{aggregator})  и обрабатывает их. (Раздел - \ref{selection_drivers_for_the_order})} 
+
+          \sr{Служба Такси может принимать заказы от "Агрегатора" с уже закрепленным водителем СТ. В этом случае СТ уведомляет водителя и закрепляет за ним заказ.}
+
+          \\ [2mm]
+
+         \hline  Диспетчерская СТ & 
+
+          \sr{Служба Такси принимает заказы от "Диспетчерской"(Раздел - \ref{dispatching}) и обрабатывает их. (Раздел - \ref{selection_drivers_for_the_order})} 
+
+          \\ [2mm]
+
+         \hline  Мобильное приложение (пассажирское) СТ  & -ЭТА ЧАСТЬ НАХОДИТСЯ В РАЗРАБОТКЕ- \\ [2mm]
+
+         \hline  Веб-сайт СТ & -ЭТА ЧАСТЬ НАХОДИТСЯ В РАЗРАБОТКЕ- \\ [2mm]
+         \hline
+      \end{tabular}
+      \end{center}
+    \end{table}

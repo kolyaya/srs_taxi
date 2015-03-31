@@ -1,0 +1,93 @@
+\subsubsection{Сервис закрепления заказа} \mbox{} \\ \label{fasten_order_service}
+
+	\paragraph{Входные данные} \mbox{} \\ \label{}
+
+      \begin{itemize}
+
+        \item{
+
+          TITLE: Входные данные.\\
+          \sr{В качестве входных данных сервис принимает данные перечисленные в списке ниже.}\\
+          PRIOR: MODERATE\\
+
+        }
+
+        \begin{itemize}
+          \item [ID заказа] (CRDT-\ref{crdt_order_id})
+          \item [ID водителя] (CRDT-\ref{crdt_driver_id})
+        \end{itemize}
+
+      \end{itemize}
+
+    \paragraph{Выходные данные} \mbox{} \\
+
+      \begin{itemize}
+
+        \item{
+
+          TITLE: Выходные данные.\\
+          \sr{В качестве выходных данных сервис возвращает один из ответов перечисленных в списке ниже.}\\
+          PRIOR: MODERATE\\
+
+        }
+
+        \begin{itemize}
+          \item [Ответ - [Заказ закреплен]] (CRDT-\ref{crdt_response_order_fixed})
+          \item [Ответ - [Не удалось закрепить]] (CRDT-\ref{crdt_response_unable_to_fix})
+        \end{itemize}
+
+      \end{itemize}
+
+    \paragraph{Процесс закрепления заказа} \mbox{} \\
+
+        \begin{itemize}
+
+	        \item {
+	          TITLE: Процесс закрепления заказа.\\
+	          \sr{Процесс закрепления заказа описан в ALG-\ref{alg_order_fastening}.}\\
+	          PRIOR: MODERATE\\
+	        }
+
+     	   \end{itemize}
+
+        \begin{alg}[Процесс закрепления заказа водителям.] \label{alg_order_fastening} \mbox{}
+
+	        \begin{enumerate}
+
+	          \item Сервис закрепляет заказ за водителем. - SRVACT-\ref{srvact_fix_order_for_driver}.
+
+	          \item Сервис уведомляет водителя о закреплении заказа. - SRVACT-\ref{srvact_send_messege_to_driver_about_fix_order}.
+	          
+	          \item Если закрепление заказа прошло успешно, то сервис выполняет SRVACT-\ref{srvact_send_response_about_fix_order}. 
+
+	          \item Если при закреплении заказа возникла ошибка, то сервис выполняет SRVACT-\ref{srvact_send_response_about_error_with_fix_order}. 
+	        \end{enumerate}
+
+        	\end{alg}
+
+        \label{filters_table}
+        \setlength{\extrarowheight}{2mm}
+        \begin{longtable}{|p{2cm}|p{3cm}|p{10cm}|}
+
+
+          \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+          \endfirsthead
+          \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+          \endhead
+
+
+
+          \hline  \srvact{srvact_fix_order_for_driver}{}  & Закрепления заказа за водителем. (Запись в базу) & \sr{} \\ [2mm]
+
+          \hline  \srvact{srvact_send_messege_to_driver_about_fix_order}{}  & Отправка сообщения водителю о закреплении заказа. & \sr{} \\ [2mm]
+
+          \hline  \srvact{srvact_send_response_about_fix_order}{}  & Отправка ответа - [Заказ закреплен] (CRDT-\ref{crdt_response_order_fixed})& \sr{} \\ [2mm]
+
+          \hline  \srvact{srvact_send_response_about_error_with_fix_order}{}  & Отправка ответа - [Не удалось закрепить] (CRDT-\ref{crdt_response_unable_to_fix}) & \sr{} \\ [2mm]
+
+
+
+          \hline
+
+          \caption {Действия сервиса закрепления заказов}
+        \end{longtable}

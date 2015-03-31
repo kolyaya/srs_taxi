@@ -1,0 +1,45 @@
+\paragraph{Обработка отмены заказа}
+
+      \subparagraph{Функциональные требования} \mbox{}\\
+
+        TITLE: Действия при поступлении сообщения.
+      	\sr{При поступлении сообщения об отмене заказа сервер должен выполнять действия описанные в ALG - \ref{cancel_order_alg}.}\\
+      	PRIOR: CRITICAL\\
+
+      \subparagraph{Не функциональные требования} \mbox{}\\
+
+      	\sr{Действия в ALG - \ref{cancel_order_alg} описанны в таблице \ref{cancel_order_actions_table}.}\\
+      	PRIOR: CRITICAL\\
+
+    	\begin{alg}[Алгоритм обработки отмены заказа]\label{cancel_order_alg} \mbox{}\\
+
+    		\begin{enumerate}
+    			\item Если на заказ не назначен водитель, то сервер:
+    			\begin{enumerate}
+    				\item Выполняет SRVACT-\ref{act_order_cancel_status}.
+    				\item Выполняет SRVACT-\ref{act_cancel_order_distribution}.
+    			\end{enumerate}
+    			\item Если на заказ назначен водитель, то сервер:
+    			\begin{enumerate}
+    				\item Выполняет SRVACT-\ref{act_order_cancel_status}.
+    				\item Выполняет ALG - \ref{remove_driver_from_order_alg}.
+    			\end{enumerate}
+    		\end{enumerate}
+
+    	\end{alg}
+
+    	\begin{table} [h]
+           \begin{center}
+           \caption {Действия сервера при отмене заказа.}
+           \label{cancel_order_actions_table}
+           \setlength{\extrarowheight}{2mm}
+           \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+               \hline \textbf{ID} & \textbf{Название}&\textbf{Действие сервера} \\ [2mm]
+
+               \hline \srvact{act_order_cancel_status}{} & Присвоение статуса "Отмена" & Сервер присваивает заказу статус "Отменен". \\ [2mm]
+               \hline \srvact{act_cancel_order_distribution}{} & Рассылка водителям (Отмена)  & Сервер делает рассылку сообщений водителям об отмене заказа.\\ [2mm]
+
+               \hline
+           \end{tabular}
+           \end{center}
+        \end{table}
