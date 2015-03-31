@@ -1,0 +1,105 @@
+\subsection{Заказы} \label{driver_app_orders_tab}
+
+    DESC: При нажатии на вкладку “Заказы” отображается страница со свободными заказами, вложенной вкладкой переключения на зарезервированные заказы и картой.
+
+      \begin{itemize}
+
+        \item{
+          TITLE: Элементы вкладки\\
+          \sr{Во вкладке должны присутствовать элементы, которые перечислены и описаны в таблице \ref{driver_app_orders_tab_table}.}\\
+          PRIOR: MODERATE\\}
+
+        \item{
+          TITLE: Расположение элементов\\
+          \sr{Окно делится на две части условной вертикальной линией.}\\
+          \sr{У левого края окна находятся элементы ELTAX-\ref{orders_tab_element_free_orders}, ELTAX-\ref{orders_tab_element_rezerv_orders}.}\\
+          \sr{В левой части находится элемент ELTAX-\ref{orders_tab_element_order}.}\\
+          \sr{В правой части находится элемент ELTAX-\ref{orders_tab_element_map}.}\\
+          PRIOR: MODERATE\\}
+
+        \item{
+          TITLE: Общие требования к функционалу\\
+          \sr{Мобильное приложение принимает от сервера информацию о заказах, доступных водителю.}\\
+          \sr{При приёме водителем какого-либо заказа мобильное приложение отправляет сообщение на сервер о закреплении заказа за водителем. Затем сервер присылает ответ о том, что заказ закреплен/не закреплен за водителем.}\\
+          PRIOR: MODERATE\\}
+      \end{itemize}
+
+      %%%Таблица описания вкладки “Заказы”
+      \begin{table}[h]
+        \begin{center}
+        \caption {Элементы вкладки “Заказы”}
+        \label{driver_app_orders_tab_table}
+        \setlength{\extrarowheight}{2mm}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+          \hline     \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+
+          \hline \eltax{orders_tab_element_free_orders}{} & Вложенная вкладка “Свободные” & \sr{По входу в эту вкладку отображаются все свободные заказы (ELTAX-\ref{orders_tab_element_order}), они отсортированы по срочности и времени подачи.}\\ [2mm]
+
+          \hline \eltax{orders_tab_element_rezerv_orders}{} & Вложенная вкладка “Резерв” & \sr{По входу в эту вкладку отображаются все предварительные заказы (ELTAX-\ref{orders_tab_element_order}).}\\ [2mm]
+
+          \hline \eltax{orders_tab_element_order}{} & Список заказов & \sr{Список состоит из карточек “Заказ” (описание в разделе \ref{orders_tab_element_order_description}).} \\ [2mm]
+            
+          \hline \eltax{orders_tab_element_map}{} & Карта & \sr{Яндекс карта. На ней специальными отметками отображается текущее местоположение водителя и места, где появляются заказы.}\\ [2mm]
+
+          \hline
+        \end{tabular}
+        \end{center}
+      \end{table}
+
+      \subsubsection{Карточка “Заказ”}  \label{orders_tab_element_order_description}
+
+          DESC: Заказы в списке отображаются в виде карточек.
+
+          \begin{itemize}
+              
+              \item{
+                TITLE: Элементы карточки “Заказ”\\
+                \sr{В карточке должны присутствовать элементы, которые перечислены и описаны в таблице \ref{orders_tab_element_table_order_description}.}\\
+                PRIOR: MODERATE\\}
+                
+              \item{  
+                TITLE: Расположение элементов карточки\\
+                \sr{Окно условно делится на четыре строки.}\\
+                \sr{В первой строке находятся элементы ELTAX-\ref{orders_tab_element_order_class}, ELTAX-\ref{orders_tab_element_order_type}.}\\
+                \sr{Во второй строке находятся элементы ELTAX-\ref{orders_tab_element_order_from}, ELTAX-\ref{orders_tab_element_order_time_come_in}.}\\
+                \sr{В третьей строке находятся элементы ELTAX-\ref{orders_tab_element_order_where_now}, ELTAX-\ref{orders_tab_element_order_time_to_aim}.}\\
+                \sr{В четвертой строке находятся элементы ELTAX-\ref{orders_tab_element_order_demands}, ELTAX-\ref{orders_tab_element_order_dist_to_aim}.}\\
+                PRIOR: MODERATE\\}
+
+              \item{
+                TITLE: Общие требования к карточке “Заказ”\\
+                \sr{При нажатии на любую карточку “Заказ” из списка появляется элемент ELTAX-\ref{orders_tab_element_order_modal_window}.  }\\
+                \sr{Если водитель принимает заказ от Яндекс.Такси, то при ожидании подтверждения от сервера подтверждения, что водитель назначен на заказ, на карточку выбранного заказа накладывается прелоадер (gif-анимация ожидания).}\\
+                PRIOR: MODERATE\\}
+   
+            \end{itemize} 
+
+            %%%Таблица описания карточки “Заказ”
+            \setlength{\extrarowheight}{2mm}
+              \begin{longtable}{|p{3cm}|p{3cm}|p{9cm}|}
+              \caption {Элементы формы “Заказ”} \label{orders_tab_element_table_order_description}\\
+
+                \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+                \endfirsthead
+                \hline  \textbf{ID}  & \textbf{Название} & \textbf{Требования/Описание} \\ [2mm]
+                \endhead
+
+                \hline  \eltax{orders_tab_element_order_class}{} & Класс заказа & \sr{Существует три класса заказов: \begin{itemize} \item Эконом \item Комфорт \item Бизнес \end{itemize}}\\ [2mm]
+                \hline  \eltax{orders_tab_element_order_type}{} & Тип заказа & \sr{Существует два вида заказов: \begin{itemize} \item Срочный \item Предварительный \end{itemize}} \\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_from}{} & Куда & \sr{Отображается адрес источника заказа.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_time_come_in}{} & Время поступления заказа & \sr{Отображается время, когда появился заказ.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_where_now}{} & Откуда & \sr{Отображается адрес текущего местоположения водителя.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_time_to_aim}{} & Время до источника заказа & \sr{Отображается время, необходимое водителю для того, чтобы добраться до источника заказа. Просчитывается Яндекс.Навигатором.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_demands}{} & Примечания (требования) к заказу & \sr{Отображаются дополнительные требования к выполнению заказа.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_dist_to_aim}{} & Расстояние до источника заказа & \sr{Отображается расстояние в формате [км,м] до источника заказа. Просчитывается Яндекс.Навигатором.}\\ [2mm]
+
+                \hline  \eltax{orders_tab_element_order_modal_window}{} & Модальное окно приёма заказа & \sr{Содержит следующие элементы: \begin{itemize} \item Заголовок - [“Принять заказ?”] \item Тип заказа \item Класс заказа \item Адрес, откуда поступил заказ \item Адрес, место назанчения заказа \item На какое время назначен заказ \item Наценки \item Кнопка “Принять” - принять выбранный заказ \item Кнопка “Отменить” - скрыть выбранный заказ \end{itemize}}\\ [2mm]
+
+                \hline
+              \end{longtable}

@@ -1,0 +1,29 @@
+\subsection{Интерфейс приложения}
+
+    DESC: Описание интерфейса водительского мобильного приложения.
+       
+    TITLE: Элементы интерфейса\\
+    \sr{В интерфейсе приложения должны присутствовать элементы, которые перечислены и описаны в таблице \ref{app_interface}.}\\
+    PRIOR: CRITICAL\\  
+
+    TITLE: Расположение элементов\\
+    \sr{Вверху экрана находится элемент ELTAX-\ref{app_interface_lenta_vkladok}.}\\
+    \sr{Под элементом ELTAX-\ref{app_interface_lenta_vkladok} находится элемент ELTAX-\ref{app_interface_osn_obl}.}\\
+    PRIOR: CRITICAL\\
+    
+    \begin{table}[h]
+    \begin{center}
+    \caption {Интерфейс приложения}
+    \label{app_interface}
+    \setlength{\extrarowheight}{2mm}
+      \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+        \hline     \textbf{ID}&\textbf{Название элемента}&\textbf{Описание элемента} \\ [2mm]
+
+        \hline   \eltax{app_interface_lenta_vkladok}{} & Лента вкладок & \sr{Содержит следующие вкладки: \begin{itemize} \item Таксометр. (Описание - \ref{driver_app_taximeter_tab}) \item Заказы. (Описание - \ref{driver_app_orders_tab}) \item Навигатор. (Описание - \ref{driver_app_navigator_tab}) \item Счёт. (Описание - \ref{driver_app_bill_tab}) \item Робот. (Описание - \ref{driver_app_robot_tab}) \item Настройки. (Описание - \ref{driver_app_settings_tab}) \end{itemize}}\\ [2mm]
+
+        \hline   \eltax{app_interface_osn_obl}{} & Основная область & \sr{Находится под 'Лентой вкладок' и занимает оставшуюся часть экрана. В этой области отображается интерфейс выбранной вкладки.}\\ [2mm]
+
+        \hline
+      \end{tabular}
+    \end{center}
+    \end{table}

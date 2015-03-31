@@ -1,0 +1,66 @@
+\subsection{Пользователи}
+
+      \subsubsection{Роли, состояния приложения}
+
+      		DESC: У приложения есть два состояния, они перечислены и описаны в таблице \ref{app_state}. 
+
+             \begin{table}
+             \begin{center}
+             \caption {Состояния приложений}
+             \label{app_state}
+             \setlength{\extrarowheight}{2mm}
+             \begin{tabular}{|p{5cm}|p{10cm}|}
+                 \hline     \textbf{Состояние}&\textbf{Описание, уровень доступа} \\ [2mm]
+
+                 \hline   Авторизованный пользователь & В этом состоянии пользователю доступны все элементы интерфейса и функциональные возможности приложения.\\ [2mm]
+                 \hline   Автономный режим & В этом состоянии пользователю доступны следующие элементы интерфейса: \begin{itemize} \item Таксометр \item Навигатор \item Настройки \end{itemize}\\ [2mm]
+                  \hline
+             \end{tabular}
+             \end{center}
+             \end{table}
+		    
+      \subsubsection{Авторизация} \label{options_tab_authorization}
+
+        DESC: Водитель имеет возможность авторизоваться в специальном окне, которое появляется после выбора пункта “Войти” во вкладке “Настройки”.
+
+        \begin{itemize}
+          
+          \item{
+            TITLE: Элементы окна для авторизации\\
+            \sr{В окне должны присутствовать элементы, которые перечислены и описаны в таблице \ref{driver_app_authorization_tab_elements}.}\\
+            PRIOR: MODERATE\\}
+
+          \item{
+            TITLE: Расположение элементов\\
+            \sr{Окно условно делится на две части, расположенных одна под другой.}\\
+            \sr{В верхней части друг под другом расположены элементы ELTAX-\ref{driver_element_auth_company}, ELTAX-\ref{driver_element_auth_login}, ELTAX-\ref{driver_element_auth_pwd}, ELTAX-\ref{driver_element_auth_remember} в том же порядке, в котором они перечислены.}\\
+            \sr{В нижней части друг под другом расположены элементы ELTAX-\ref{driver_element_auth_enter}, ELTAX-\ref{driver_element_auth_autonom}, в том же порядке, в котором они перечислены.}\\
+            PRIOR: MODERATE\\}
+
+        \end{itemize}        
+
+        \begin{table}[h]
+          \begin{center}
+          \caption{Элементы окна авторизации}
+          \label{driver_app_authorization_tab_elements}
+          \setlength{\extrarowheight}{2mm}
+          \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+             \hline   \textbf{ID}&  \textbf{Название}&\textbf{Требования/Описание} \\ [2mm]
+
+
+             \hline \eltax{driver_element_auth_company}{} & Компания & \sr{Выпадающий список. Водитель выбирает название своей компании из списка, элементы которого выдаёт сервер.}\\ [2mm]
+
+             \hline \eltax{driver_element_auth_login}{} & Логин & \sr{Текстовое поле для ввода. Водитель вводит свой позывной.}\\ [2mm]
+
+             \hline \eltax{driver_element_auth_pwd}{} & Пароль & \sr{Текстовое поле для ввода. Водитель вводить пароль для своего логина.}\\ [2mm]
+
+             \hline \eltax{driver_element_auth_remember}{} & Запомнить & \sr{Chechbox. При наличии флажка в checkbox-е, введенные водителем логин и пароль сохраняются при следующем входе в приложение. При отсутствии флажка, введенные данные не сохраняются.}\\ [2mm]    
+
+             \hline \eltax{driver_element_auth_enter}{} & Кнопка “Войти” & \sr{При нажатии на кнопку “Войти” на сервер отправляются: \begin{itemize} \item Введенные водителем в поля “Логин” и “Пароль” данные; \item Состояние флажка “Запомнить”; \item Выбранный элемент из списка “Компания”. \end{itemize} На сервере происходит проверка введенных данных, и если они валидны, происходит авторизация водителя. Если данные не проходят валидацию, приложение возвращает водителя обратно на окно авторизации, и водителю вновь необходимо ввести данные.}\\ [2mm]
+
+             \hline \eltax{driver_element_auth_autonom}{} & Кнопка “Работать автономно” & \sr{При нажатии на кнопку “Работать автономно”, на сервер не отправляется никаких данных и авторизация не происходит. Приложение возвращает водителя на вкладку “Таксометр”.}\\ [2mm]
+
+             \hline
+          \end{tabular}
+          \end{center}
+        \end{table}

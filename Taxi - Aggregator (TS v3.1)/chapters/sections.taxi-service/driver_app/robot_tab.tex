@@ -1,0 +1,145 @@
+\subsection{Робот} \label{driver_app_robot_tab}
+
+    DESC: При переходе на вкладку “Робот” отображается список настроек и список режимов и опций для каждого из них.
+
+    \subsubsection{Общие требования} \mbox{}\\
+
+      \begin{itemize}
+
+        \item{
+          TITLE: Отправка настроек и опций на сервер.\\
+          \sr{При изменении опций или параметров, мобильное приложение автоматически отправляет обновленные настройки на сервер.}\\
+          PRIOR: MODERATE\\
+          }
+
+        \item{
+          TITLE: Сохранение настроек.\\
+          \sr{Для каждого пользователя настройки сохраняются в базе СТ.}\\
+          NOTE: При перезапуске или при разрыве соединения сервер возвращает приложению последние записанные в базу СТ настройки для конкретного пользователя.\\
+          PRIOR: MODERATE\\
+          }
+
+      \end{itemize}
+
+    \subsubsection{Интерфейс вкладки} \mbox{}\\
+
+      \begin{itemize}
+
+        \item{
+          TITLE: Деление экрана.\\
+          \sr{Экран делится на две части, при помощи вертикальной линии, в соотношении 1 : 1.}\\          
+          PRIOR: MODERATE\\}
+
+        \item {
+          TITLE: Расположение общих настроек.\\
+          \sr{В левой части расположен список общих настроек робота. (Описание - \ref{driver_app_robot_tab_general_settings})}\\
+          PRIOR: MODERATE\\}
+
+        \item {
+          TITLE: Расположение настроек робота.\\
+          \sr{В правой части расположен список режимов работы робота. (Описание - \ref{driver_app_robot_tab_robot_settings})}\\
+          PRIOR: MODERATE\\}
+
+      \end{itemize}
+
+    \subsubsection{Общие настройки} \label{driver_app_robot_tab_general_settings} \mbox{}\\
+
+      \begin{itemize}
+
+        \item{
+          \sr{В списке должны присутствовать настройки, перечисленные в таблице \ref{driver_app_robot_tab_table_general_settings}.}\\
+          PRIOR: MODERATE\\}
+
+      \end{itemize}
+
+      %%%Таблица общих настроек робота.
+      \begin{table}[h] 
+        \begin{center}
+        \caption {Общие настройки робота}
+        \label{driver_app_robot_tab_table_general_settings}
+        \setlength{\extrarowheight}{2mm}
+        \begin{tabular}{|p{4cm}|p{3cm}|p{8cm}|}
+
+          \hline     \textbf{Название}&\textbf{Способ изменения настройки}&\textbf{Описание} \\ [2mm]
+
+          \hline   Заказы классом ниже & Переключатель ON/OFF & Водитель с машиной определенного класса может принимать заказы ниже по классу.\\ [2mm]
+
+          \hline   Заказы от Яндекса & Переключатель ON/OFF & Возможность принимать заказы через канал Яндекс.Такси. \\ [2mm]
+            
+          \hline   Цепочка & Переключатель ON/OFF & Возможность закрепления за водителем заказов “в цепочку”. \\ [2mm]
+
+          \hline   Дистанция поиска & Поле для ввода & Возможность задания водителем километража, в пределах которого сервер подбирает заказ. \\ [2mm]
+
+          \hline   Время подачи & Поле для ввода & Возможность задания водителем максимального времени, за которое он хочет добраться до начальной точки заказа. \\ [2mm]
+
+          \hline
+        \end{tabular}
+        \end{center}
+      \end{table}
+
+    \subsubsection{Роботы} \label{driver_app_robot_tab_robot_settings} \mbox{}\\
+
+      \begin{itemize}
+
+        \item{
+          TITLE: Режимы работы роботов. \\
+          \sr{В списке должны присутствовать режимы, перечисленные в таблице \ref{driver_app_robot_tab_modes}.}\\
+          PRIOR: MODERATE\\}
+      \end{itemize}
+
+      %%%Таблица режимов работы робота.
+      \begin{table}
+          \begin{center}
+          \caption {Режимы работы робота}
+          \label{driver_app_robot_tab_modes}
+          \setlength{\extrarowheight}{2mm}
+          \begin{tabular}{|p{3cm}|p{3cm}|p{6cm}|p{3cm}|}
+
+            \hline     \textbf{Название режима работы}&\textbf{Способ выбора режима работы}&\textbf{Список настроек}&\textbf{Описание настроек} \\ [2mm]
+
+            \hline   Городской & Переключатель ON/OFF & Можно изменить следующие настройки: \begin{itemize} \item Округ. \end{itemize} & См. в таблице \ref{table:driver_app_robot_tab_table_town_mode} \\ [2mm]
+
+            \hline   Портовый & Переключатель ON/OFF & Можно изменить следующие настройки: \begin{itemize} \item Порты.;  \item Встреча;  \item Проводы. \end{itemize} & См. в таблице \ref{table:driver_app_robot_tab_table_port_mode}  \\ [2mm]
+
+            \hline
+          \end{tabular}
+          \end{center}
+      \end{table}
+
+      %%%Таблица описания настроек в городском режиме работы.
+      \begin{table}
+          \begin{center}
+          \caption {Описание настроек в городском режиме работы}
+          \label{table:driver_app_robot_tab_table_town_mode}
+          \setlength{\extrarowheight}{2mm}
+          \begin{tabular}{|p{4cm}|p{3cm}|p{8cm}|}
+
+            \hline     \textbf{Название}&\textbf{Способ изменения}&\textbf{Описание} \\ [2mm]
+
+            \hline   Округ & Выпадающий список & Водитель помечает чекбоксом округи в списке, таким образом исключая заказы с конечной точкой в выбранных округах. Доступен выбор из следующих округов: \begin{itemize} \item ЦАО \item САО \item ЮАО \item СЗАО \item ЮЗАО \item ВАО \item СВАО \item ЮВАО \item ЗАО \end{itemize} \\ [2mm]
+
+            \hline
+          \end{tabular}
+          \end{center}
+      \end{table}        
+
+      %%%Таблица описания настроек в портовом режиме работы.
+      \begin{table}
+          \begin{center}
+          \caption {Описание настроек в портовом режиме работы}
+          \label{table:driver_app_robot_tab_table_port_mode}
+          \setlength{\extrarowheight}{2mm}
+          \begin{tabular}{|p{4cm}|p{3cm}|p{8cm}|}
+
+            \hline     \textbf{Название}&\textbf{Способ изменения}&\textbf{Описание} \\ [2mm]
+
+            \hline   Порты & Выпадающий список & Водитель помечает чекбоксом названия аэропортов. Доступен выбор из следующих аэропортов: \begin{itemize} \item Домодедово \item Шереметьево \item Внуково \end{itemize} \\ [2mm]
+
+            \hline   Встреча & Checkbox & Опция, указывающая на то, что местом назначения для заказа этого типа будет один или несколько аэропортов, выбранных водителем. \\ [2mm]
+
+            \hline   Проводы & Checkbox & Опция, указывающая на то, что местом прибытия для заказа этого типа является один или несколько аэропортов, выбранных водителем. \\ [2mm]
+
+            \hline
+          \end{tabular}
+          \end{center}
+      \end{table}
