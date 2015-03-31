@@ -1,0 +1,43 @@
+\subsubsection{Обработка снятия водителя с заказа} \label{remove_driver_from_order}
+
+    \paragraph{Функциональные требования} \mbox{}\\
+
+      TITLE: Действия при поступлении сообщения.
+     	\sr{При поступлении сообщения о снятии водителя с заказа сервер должен выполнять действия описанные в ALG - \ref{remove_driver_from_order_alg}.}\\
+      PRIOR: CRITICAL\\
+
+    \paragraph{Не функциональные требования} \mbox{}\\
+
+      \sr{Действия в ALG - \ref{remove_driver_from_order_alg} описанны в таблице \ref{remove_driver_from_order_actions_table}.}\\
+      PRIOR: CRITICAL\\
+
+    % Алгоритм обработки снятия водителя с заказа
+
+    	\begin{alg} [Алгоритм обработки снятия водителя с заказа] \label{remove_driver_from_order_alg} \mbox{}\\
+
+        При поступлении запроса на открепление водителя от заказа, сервер выполняет следующий алгоритм:
+
+        \begin{enumerate}
+          \item Выполняет SRVACT-\ref{act_undocking_driver_from_order}.
+          \item Выполняет SRVACT-\ref{act_remove_driver_driver_notification} и SRVACT-\ref{act_remove_driver_dispatcher_notification}.
+          \item Если причиной снятия водителя с заказа была не отмена заказа, то заказ заново выходит в раздачу (\ref{selection_drivers_for_the_order}).
+        \end{enumerate}
+      \end{alg}
+
+    % Таблица действий сервера при снятии водителя с заказа
+    	\begin{table} [h]
+         \begin{center}
+         \caption {Действия сервера при снятии водителя с заказа.}
+         \label{remove_driver_from_order_actions_table}
+         \setlength{\extrarowheight}{2mm}
+         \begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+             \hline \textbf{ID} & \textbf{Название}&\textbf{Действие сервера} \\ [2mm]
+
+             \hline \srvact{act_undocking_driver_from_order}{} & Открепление водителя. & Сервер открепляет водителя от заказа. \\ [2mm]
+             \hline \srvact{act_remove_driver_driver_notification}{} & Уведомление водителя о снятии.  & Сервер посылает водителю сообщение о снятии его с заказа.\\ [2mm]
+             \hline \srvact{act_remove_driver_dispatcher_notification}{} & Уведомление диспетчера о снятии. & Сервер посылает диспетчеру сообщение о снятии водителя с заказа. \\ [2mm]
+
+             \hline
+         \end{tabular}
+         \end{center}
+      \end{table}
