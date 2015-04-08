@@ -1,0 +1,23 @@
+\subparagraph{Обработка отмены заказа}
+
+  \begin{itemize}
+
+    \item {
+      TITLE: Процесс обработки отмены заказа.\\
+      \sr{Процесс описан в ALG - \ref{cancel_order_alg}.}\\
+      PRIOR: CRITICAL\\
+    }
+
+  \end{itemize}
+
+  \begin{alg}[Алгоритм обработки отмены заказа]\label{cancel_order_alg} \mbox{}\\
+
+    \begin{enumerate}
+
+      \item Сервис присваивает заказу статус "Отменен" - SRVACT-\ref{act_order_cancel_status}.
+
+      \item Если на заказ назначен водитель, то сервис снимает водителя с заказа. - Раздел \ref{remove_driver_from_order}.
+
+    \end{enumerate}
+
+  \end{alg}

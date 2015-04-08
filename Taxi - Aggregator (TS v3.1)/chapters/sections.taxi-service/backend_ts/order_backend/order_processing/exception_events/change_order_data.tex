@@ -1,0 +1,45 @@
+\subparagraph{Обработка изменения данных заказа} \mbox{}\\ \label{change_order_processor} 
+
+  \begin{itemize}
+
+   \item {
+      TITLE: Процесс обработки изменения данных заказа.
+      \sr{Процесс описан в ALG - \ref{edit_order_alg}.}\\
+      PRIOR: CRITICAL\\
+   }
+
+   \item {
+    TITLE: Критичные поля заказа.
+     \sr{Критичными полями являются следующие поля заказа:
+        \begin{itemize}
+          \item Время
+          \item Адрес подачи/прибытия
+          \item Доп. услуги
+          \item Способ оплаты
+          \item Тариф
+        \end{itemize}\mbox{}}\\ 
+      PRIOR: CRITICAL\\   
+   }
+
+   \end{itemize}
+
+    \begin{alg}[Процесс обработки изменения данных заказа]\label{edit_order_alg} \mbox{}\\
+        \begin{longenum}
+          \item Если на заказ не назначен водитель, то заказ заново выходит в раздачу (\ref{selection_drivers_for_the_order}).
+          \item Если на заказ назначен водитель, то сервис:
+          \begin{longenum}
+            \item Производит фильтрацию для закрепленного за заказом водителя - SRVACT-\ref{act_one_driver_filter}.
+              \begin{longenum}
+                \item Если водитель проходит фильтрацию, то сервис:
+                  \begin{longenum}
+                   \item Предлагает водителю обновленный заказ. - SRVACT-\ref{act_offer_driver_updated_order}.
+                     \begin{longenum}
+                      \item Если ответ положительный, то водитель продолжает выполнять заказ.
+                      \item Если ответ отрицательный или не пришел в течении STAT-\ref{timeout_waiting_for_a_response_from_the_driver_request}, то сервис снимает водителя с заказа - Раздел-\ref{remove_driver_from_order}
+                     \end{longenum}
+                  \end{longenum}
+                \item Если водитель не проходит фильтрацию, то сервис снимает водителя с заказа - Раздел-\ref{remove_driver_from_order}, а затем выполняет первый шаг процесса.
+              \end{longenum}
+          \end{longenum}
+        \end{longenum}
+      \end{alg}

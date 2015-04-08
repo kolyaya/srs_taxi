@@ -1,0 +1,32 @@
+\subparagraph{Обработка снятия водителя с заказа} \label{remove_driver_from_order}
+
+  \begin{itemize}
+
+   \item {
+      TITLE: Процесс обработки снятия водителя с заказа.
+      \sr{Процесс описан в ALG - \ref{remove_driver_from_order_alg}.}\\
+      PRIOR: CRITICAL\\
+   }
+
+   \end{itemize}
+
+    % Алгоритм обработки снятия водителя с заказа
+
+    	\begin{alg} [Процесс обработки снятия водителя с заказа] \label{remove_driver_from_order_alg} \mbox{}\\
+
+        \begin{enumerate}
+
+          \item Сервис открепляет водителя от заказа. - SRVACT-\ref{act_undocking_driver_from_order}.
+
+          \begin{enumerate}
+
+            \item Сервис уведомляет водителя о снятии заказа. - SRVACT-\ref{act_remove_driver_driver_notification} 
+            
+            \item В случае если процесс был инициирован диспетчером, то сервис уведомляет диспетчера об успешном снятии водителя с заказа. -  SRVACT-\ref{act_remove_driver_dispatcher_notification}.
+
+          \end{enumerate}
+          
+          \item Если причиной снятия водителя с заказа была не отмена заказа, то заказ заново выходит в раздачу (\ref{selection_drivers_for_the_order}).
+
+        \end{enumerate}
+      \end{alg}

@@ -28,11 +28,54 @@
 
 	  \end{itemize}
 
+	\paragraph{Действия сервиса-координатора заказа} \mbox{} \\ \label{}
+
+	  \label{}
+	  \setlength{\extrarowheight}{2mm}
+	  \begin{longtable}{|p{2cm}|p{3cm}|p{10cm}|}
+
+
+	    \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+	    \endfirsthead
+	    \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+	    \endhead
+
+
+
+	    \hline  \srvact{srvact_call_filter_service}{}  &  Фильтрация & \sr{Вызов микросервиса фильтрации. (Раздел - \ref{driver_filters_taxi_service})} \\ [2mm]
+
+	    \hline  \srvact{srvact_call_order_offering_service}{}  & Предложение заказа & \sr{Вызов микросервиса предложения заказов. (Раздел - \ref{order_offering_service})} \\ [2mm]
+
+	    \hline  \srvact{srvact_call_fasten_order_service}{}  & Закрепление заказа & \sr{Вызов микросервиса закрепления заказов. (Раздел - \ref{fasten_order_service})} \\ [2mm]
+
+	    \hline  \srvact{srvact_change_order_status_from_order_processing_service}  & Присвоение заказу нового статуса. & \sr{Вызов микросервиса обработки статусов заказа (Раздел - \ref{service_order_status_processing}).} \\ [2mm]
+
+	    \hline  \srvact{srvact_call_finish_order_service}{}  & Завершение заказа & \sr{Вызов микросервиса завершения заказов. (Раздел - \ref{finish_order})} \\ [2mm]
+
+        \hline \srvact{act_undocking_driver_from_order}{} & Открепление водителя. & Сервер открепляет водителя от заказа. \\ [2mm]
+
+        \hline \srvact{act_remove_driver_driver_notification}{} & Уведомление водителя о снятии.  & Сервер посылает водителю сообщение о снятии его с заказа.\\ [2mm]
+
+        \hline \srvact{act_remove_driver_dispatcher_notification}{} & Уведомление диспетчера о снятии. & Сервер посылает диспетчеру сообщение о снятии водителя с заказа. \\ [2mm]
+
+        \hline \srvact{act_one_driver_filter}{} & Фильтрация для одного водителя. & Сервер выполняет фильтрацию (\ref{driver_filters_taxi_service}) для конкретного водителя. \\ [2mm]
+
+        \hline \srvact{act_offer_driver_updated_order}{} & Предлагаем водителю обновленный заказ. & Сервер отправляет уведомление водителю, о том что заказ изменился. Вместе с запросом сервер передает водителю информацию об изменении.\\ [2mm] 
+
+        \hline \srvact{act_order_cancel_status}{} & Присвоение статуса "Отмена" & Сервер присваивает заказу статус "Отменен". \\ [2mm]
+
+	    \hline
+
+	    \caption {Действия сервиса-координатора заказа}
+	  \end{longtable}
+
 
 	\paragraph{Процессы обработки заказов} \mbox{} \\
     \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/urgent_orders} 
     \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/pre_orders}
     \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/airport_orders}
+    \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/exception_events}
+
 
     
 
