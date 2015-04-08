@@ -13,6 +13,7 @@
         }
 
         \end{itemize}
+
     \paragraph{Возможные получатели уведомлений} \mbox{} \\ \label{}
 
     	\begin{table}[h]
@@ -46,7 +47,7 @@
         }
 
         \begin{itemize}
-          \item ID заказа (CRDT-\ref{crdt_order_id})
+          \item ID заказа (CRDT-\ref{crdt_order_id}) \&\& ID водителя (CRDT-\ref{crdt_driver_id})
           \item Тип уведомления (CRDT-\ref{crdt_notification_type})
         \end{itemize}
 
@@ -102,9 +103,22 @@
 
 
 
-          \hline  \srvact{srvact_defenition_of_recipiest}{}  & Определиние получателей. & \sr{} \\ [2mm]
+          \hline  \srvact{srvact_defenition_of_recipiest}{} & Определиние получателей. 
+          	& 
+          	\sr{Определение получателей выполняется в два этапа. Описание в списке ниже.}
+			\begin{itemize}
+				\item Исходя из типа уведомления, второго параметра во входных данных сервиса, сервис определяет возможных получателей.
+				\item Исходя из первого параметра во входных данных сервиса, сервис формирует список получателей. (Пример - При смене статуса заказа сервис проверяет есть ли у заказа "Пассажир" (клиент), и если есть, то включает его в рассылку.)
+			\end{itemize} 
+			\\ [2mm]
 
-          \hline  \srvact{srvact_send_notifications}{}  & Расылка уведомлений. & \sr{} \\ [2mm]
+          \hline  \srvact{srvact_send_notifications}{}  & Расылка уведомлений. 
+          &
+            \sr{Сервис рассылает уведомления избранным получателям.}
+
+
+			\sr{Уведомления содержат сообщения индивидуальный для каждого типа получателя. Описание текстов сообщений находятся в таблице \ref{table_notificetion_types}.}
+          \\ [2mm]
 
 
           \hline
