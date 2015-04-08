@@ -1,7 +1,7 @@
 \newpage
 \subsection{Входные/Выходные данные сервисов} \mbox{} \\ \label{}
 
-    DESC: 
+    \subsubsection{Общая таблица входных/выходных данных сервисов} \mbox{} \\ \label{}
 
       \begin{table} 
          \begin{center}
@@ -13,6 +13,12 @@
 
             \hline \crdt{crdt_order}{}    & Заказ & \\ [2mm]
             \hline \crdt{crdt_order_id}{}    & ID Заказа & \\ [2mm]
+
+            \hline \crdt{crdt_notification_type}{}    
+                & Тип уведомления 
+                & \sr{Типы уведомлений, их значения и возможные получатели описаны в таблице \ref{table_notificetion_types}.}
+                \\ [2mm]
+
             \hline \crdt{crdt_driver_id}{}    & ID водителя & \\ [2mm]
             \hline \crdt{crdt_drivers_list}{}    & Список водителей & \\ [2mm]
             \hline \crdt{crdt_order_status}{}    & Статус заказа & \\ [2mm]
@@ -55,6 +61,45 @@
          \end{center}
       \end{table}
 
-        
+    \subsubsection{Типы уведомлений} \mbox{} \\ \label{}
+
+        \begin{itemize}
+            \item {
+                \sr{Возможные получатели использующиеся в таблице описаны в таблице \ref{table_potential_recipiest}.}
+            }
+            \item 
+        \end{itemize}
+
+        \setlength{\extrarowheight}{2mm}
+        \begin{longtable}{|p{3cm}|p{8cm}|p{4cm}|}
+        \caption {Типы уведомлений}\\
+
+        \hline     \textbf{Тип уведомления}&\textbf{Значения/Сообщение}&\textbf{Получатели} \\ [2mm]
+        \endfirsthead
+        \hline     \textbf{Тип уведомления}&\textbf{Значения/Сообщение}&\textbf{Получатели} \\ [2mm]
+        \endhead
+
+        \hline Смена статуса заказа  
+
+            & 
+                Если "На месте":
+                \begin{itemize}
+                    \item Пассажир - "Водитель прибыл"
+                    \item Водитель - "Статус изменен на 'На месте'"
+                \end{itemize}
+
+            &
+                \begin{itemize}
+                    \item Пассажир
+                    \item Водитель
+                \end{itemize}
+            \\ [2mm]
+
+        \hline Списание с баланса  &  & \\ [2mm]
+        \hline   &  & \\ [2mm]
+        \hline
+
+        \label{table_notificetion_types}
+        \end{longtable}
 
 

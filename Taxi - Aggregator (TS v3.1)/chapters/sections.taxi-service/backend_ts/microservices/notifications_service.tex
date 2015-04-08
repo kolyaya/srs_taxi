@@ -1,2 +1,113 @@
 \subsubsection{Сервис уведомлений} \label{notification_service}
 
+	\paragraph{Нефункциональные требования} \mbox{} \\ \label{}
+
+      \begin{itemize}
+
+        \item{
+
+          TITLE: Ограничение по ответственности работы сервиса.\\
+          \sr{Ответственность за целесообразность или соответствие уведомления с реальным событием несут инициирующие (вызывающие сервис уведомлений) уведомления сервисы.}\\
+          PRIOR: MODERATE\\
+
+        }
+
+        \end{itemize}
+    \paragraph{Возможные получатели уведомлений} \mbox{} \\ \label{}
+
+    	\begin{table}[h]
+			\begin{center}
+			\label{table_potential_recipiest}
+			\caption {Возможные получатели уведомлений}
+			\setlength{\extrarowheight}{2mm}
+			\begin{tabular}{|p{5cm}|p{10cm}|}
+
+			\hline     \textbf{Получатель}&\textbf{Описание} \\ [2mm]
+
+			\hline Водитель    & Описание в разделе \ref{essence_driver}\\ [2mm]
+			\hline Пассажир    & Описание в разделе \ref{essence_passanger}\\ [2mm]
+			\hline Диспетчер    & --В РАЗРАБОТКЕ--\\ [2mm]
+			\hline
+
+			\end{tabular}
+			\end{center}
+			\end{table}
+
+	\paragraph{Входные данные} \mbox{} \\ \label{}
+
+      \begin{itemize}
+
+        \item{
+
+          TITLE: Входные данные.\\
+          \sr{В качестве входных данных сервис принимает данные перечисленные в списке ниже.}\\
+          PRIOR: MODERATE\\
+
+        }
+
+        \begin{itemize}
+          \item ID заказа (CRDT-\ref{crdt_order_id})
+          \item Тип уведомления (CRDT-\ref{crdt_notification_type})
+        \end{itemize}
+
+      \end{itemize}
+
+    \paragraph{Выходные данные} \mbox{} \\
+
+      \begin{itemize}
+
+        \item{
+
+          TITLE: Выходные данные.\\
+          \sr{В качестве выходных данных сервис возвращает вызвавшему его сервису положительный или отрицательный ответ, что значит успешное или неуспешное выполнение работы сервиса соответственно.}\\
+          PRIOR: MODERATE\\
+
+        }
+
+      \end{itemize}
+
+    \paragraph{Процесс сервиса} \mbox{} \\
+
+        \begin{itemize}
+
+             \item {
+               TITLE: Процесс сервиса.\\
+               \sr{Процесс сервиса описан в ALG-\ref{alg_notofocation_service_processing}.}\\
+               PRIOR: MODERATE\\
+             }
+
+             \end{itemize}
+
+        \begin{alg}[Процесс сервиса.] \label{alg_notofocation_service_processing} \mbox{}
+
+             \begin{enumerate}
+
+               \item Сервис определяет получателей уведомления. - SRVACT-\ref{srvact_defenition_of_recipiest}
+
+               \item Сервис производит рассылку. - SRVACT-\ref{srvact_send_notifications}
+
+             \end{enumerate}
+
+             \end{alg}
+
+        \label{}
+        \setlength{\extrarowheight}{2mm}
+        \begin{longtable}{|p{2cm}|p{3cm}|p{10cm}|}
+
+
+          \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+          \endfirsthead
+          \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+          \endhead
+
+
+
+          \hline  \srvact{srvact_defenition_of_recipiest}{}  & Определиние получателей. & \sr{} \\ [2mm]
+
+          \hline  \srvact{srvact_send_notifications}{}  & Расылка уведомлений. & \sr{} \\ [2mm]
+
+
+          \hline
+
+          \caption {Действия сервиса}
+        \end{longtable}
