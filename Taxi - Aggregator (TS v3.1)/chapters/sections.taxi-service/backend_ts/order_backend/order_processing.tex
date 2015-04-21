@@ -15,13 +15,13 @@
 	    }
 
 		    \begin{itemize}
-		      \item Уведомление от сервиса приема заказа (Раздел-\ref{service_reception_order}) в котором содержиться [ID заказа] (CRDT-\ref{crdt_order_id}) готового для обработки.
+		      \item Уведомление от сервиса приема заказа (Раздел-\ref{service_reception_order}) в котором содержиться [ID заказа] готового для обработки.
 		    \end{itemize}
 
 	    \item{
 
 	      TITLE: Входные данные - Другие сервисы\\
-	      \sr{В этом случае сервис принимает разного рода запросы (Пример: Отмена заказа), во всех обязательно должен присутствовать [ID заказа] (CRDT-\ref{crdt_order_id}) на который направлен запрос.}\\
+	      \sr{В этом случае сервис принимает разного рода запросы (Пример: Отмена заказа), во всех обязательно должен присутствовать [ID заказа] на который направлен запрос.}\\
 	      PRIOR: MODERATE\\
 
 	    }
@@ -41,20 +41,67 @@
 	    \endhead
 
 
+	    % Фильтрация
+	    \hline  \srvact{srvact_call_filter_service}{}  
+		    &  Фильтрация 
+		    & \sr{Вызов микросервиса фильтрации. (Раздел - \ref{driver_filters_taxi_service}) В качестве аргументов передает:
 
-	    \hline  \srvact{srvact_call_filter_service}{}  &  Фильтрация & \sr{Вызов микросервиса фильтрации. (Раздел - \ref{driver_filters_taxi_service})} \\ [2mm]
+	         		\begin{enumerate}
+	         			\item ID заказа 
+	         			\item Радиус поиска
+	         		\end{enumerate}} 
+	        \\ [2mm]
 
-	    \hline  \srvact{srvact_call_order_offering_service}{}  & Предложение заказа & \sr{Вызов микросервиса предложения заказов. (Раздел - \ref{order_offering_service})} \\ [2mm]
+	    % Предложение заказа
+	    \hline  \srvact{srvact_call_order_offering_service}{}  
+	    	& Предложение заказа 
+	    	& \sr{Вызов микросервиса предложения заказов. (Раздел - \ref{order_offering_service}) В качестве аргументов передает:
 
-	    \hline  \srvact{srvact_call_fasten_order_service}{}  & Закрепление заказа & \sr{Вызов микросервиса закрепления заказов. (Раздел - \ref{fasten_order_service})} \\ [2mm]
+         		\begin{enumerate}
+         			\item ID заказа
+         			\item Список водителей
+	         	\end{enumerate}} 
+	    	\\ [2mm]
 
-	    \hline  \srvact{srvact_change_order_status_from_order_processing_service}  & Присвоение заказу нового статуса. & \sr{Вызов микросервиса обработки статусов заказа (Раздел - \ref{service_order_status_processing}).} \\ [2mm]
+	    % Закрепление заказа
+	    \hline  \srvact{srvact_call_fasten_order_service}{}  
+	    	& Закрепление заказа 
+    		& \sr{Вызов микросервиса закрепления заказов. (Раздел - \ref{fasten_order_service}) В качестве аргументов передает: 
 
-	    \hline  \srvact{srvact_call_finish_order_service}{}  & Завершение заказа & \sr{Вызов микросервиса завершения заказов. (Раздел - \ref{finish_order})} \\ [2mm]
+       			\begin{enumerate}
+         			\item ID заказа
+ 					\item ID водителя
+         		\end{enumerate}} 
+    		\\ [2mm]
 
-        \hline \srvact{act_undocking_driver_from_order}{} & Открепление водителя. & Сервер открепляет водителя от заказа. \\ [2mm]
+	    % Присоение нового статуса заказу.
+	    \hline  \srvact{srvact_change_order_status_from_order_processing_service}  
+	    	& Присвоение заказу нового статуса. 
+	    	& \sr{Вызов микросервиса обработки статусов заказа (Раздел - \ref{service_order_status_processing}). В качестве аргументов передает: 
 
-        \hline \srvact{act_remove_driver_driver_notification}{} & Уведомление водителя о снятии.  & Сервер посылает водителю сообщение о снятии его с заказа.\\ [2mm]
+                \begin{enumerate}
+                  \item ID заказа 
+                  \item Статус
+                \end{enumerate} 
+				} 
+			\\ [2mm]
+
+		% Завершение заказа
+	    \hline  \srvact{srvact_call_finish_order_service}{}  
+	    	& Завершение заказа 
+	    	& \sr{Вызов микросервиса завершения заказов. (Раздел - \ref{finish_order}) В качестве аргументов передает ID заказа.} 
+	    	\\ [2mm]
+
+
+        \hline \srvact{act_undocking_driver_from_order}{} 
+        	& Открепление водителя. 
+        	& Сервер открепляет водителя от заказа. 
+        	\\ [2mm]
+
+        \hline \srvact{act_remove_driver_driver_notification}{} 
+        	& Уведомление водителя о снятии.  
+        	& Сервер посылает водителю сообщение о снятии его с заказа.
+        	\\ [2mm]
 
         \hline \srvact{act_remove_driver_dispatcher_notification}{} & Уведомление диспетчера о снятии. & Сервер посылает диспетчеру сообщение о снятии водителя с заказа. \\ [2mm]
 
@@ -62,15 +109,13 @@
 
         \hline \srvact{act_offer_driver_updated_order}{} & Предлагаем водителю обновленный заказ. & Сервер отправляет уведомление водителю, о том что заказ изменился. Вместе с запросом сервер передает водителю информацию об изменении.\\ [2mm] 
 
-        \hline \srvact{act_order_cancel_status}{} & Присвоение статуса "Отмена" & Сервер присваивает заказу статус "Отменен". \\ [2mm]
-
+        % Рассылка водителям сообщений о недоспуности заказа для выолнения.
         \hline \srvact{act_order_is_not_available_messege_distribution}{} 
-
-	        & Рассылка водителям сообщений о недоспуности заказа для выолнения. 
+        	& Рассылка водителям сообщений о недоспуности заказа для выолнения. 
 
 	        & 
 	        DESC: Это действие необходимо для того чтоб в водителском клиенте не отображался уже недоступный для выполнения заказ, при этом причина его недоступности (отмена или закрепление за другим водителем) не важна.
-	        
+
 	        \sr{Сервер делает рассылку сообщений водителям о недоспуности заказа для выолнения.}
 	        \\[2mm]
 

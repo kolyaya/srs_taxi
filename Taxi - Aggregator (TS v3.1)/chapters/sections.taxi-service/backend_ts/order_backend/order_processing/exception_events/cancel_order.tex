@@ -14,7 +14,12 @@
 
     \begin{enumerate}
 
-      \item Сервис присваивает заказу статус "Отменен" - SRVACT-\ref{act_order_cancel_status}.
+      \item Сервис присваивает заказу статус "Отменен" - SRVACT-\ref{srvact_change_order_status_from_order_processing_service}. В качестве аргументов передает: 
+
+                \begin{enumerate}
+                  \item ID заказа 
+                  \item Статус "Отменен"
+                \end{enumerate} 
 
       \item Если на заказ назначен водитель, то сервис снимает водителя с заказа. - Раздел \ref{remove_driver_from_order}.
 

@@ -14,7 +14,7 @@
 
         \end{itemize}
 
-    \paragraph{Возможные получатели уведомлений} \mbox{} \\ \label{}
+  \paragraph{Возможные получатели уведомлений} \mbox{} \\ \label{}
 
     	\begin{table}[h]
 			\begin{center}
@@ -47,13 +47,13 @@
         }
 
         \begin{itemize}
-          \item ID заказа (CRDT-\ref{crdt_order_id}) \&\& ID водителя (CRDT-\ref{crdt_driver_id})
-          \item Тип уведомления (CRDT-\ref{crdt_notification_type}) \&\& Доп. параметры (Статус, сумма и прочее)
+          \item ID заказа \&\& ID водителя 
+          \item Тип уведомления (Таблица \ref{table_notificetion_types}) \&\& Доп. параметры (Статус, сумма и прочее)
         \end{itemize}
 
       \end{itemize}
 
-    \paragraph{Выходные данные} \mbox{} \\
+  \paragraph{Выходные данные} \mbox{} \\
 
       \begin{itemize}
 
@@ -67,7 +67,7 @@
 
       \end{itemize}
 
-    \paragraph{Процесс сервиса} \mbox{} \\
+  \paragraph{Процесс сервиса} \mbox{} \\
 
         \begin{itemize}
 
@@ -106,22 +106,74 @@
           \hline  \srvact{srvact_defenition_of_recipiest}{} & Определиние получателей. 
           	& 
           	\sr{Определение получателей выполняется в два этапа. Описание в списке ниже.}
-			\begin{itemize}
-				\item Исходя из типа уведомления, второго параметра во входных данных сервиса, сервис определяет возможных получателей.
-				\item Исходя из первого параметра во входных данных сервиса, сервис формирует список получателей. (Пример - При смене статуса заказа сервис проверяет есть ли у заказа "Пассажир" (клиент), и если есть, то включает его в рассылку.)
-			\end{itemize} 
-			\\ [2mm]
+        			\begin{itemize}
+        				\item Исходя из типа уведомления, второго параметра во входных данных сервиса, сервис определяет возможных получателей.
+        				\item Исходя из первого параметра во входных данных сервиса, сервис формирует список получателей. (Пример - При смене статуса заказа сервис проверяет есть ли у заказа "Пассажир" (клиент), и если есть, то включает его в рассылку.)
+        			\end{itemize} 
+        			\\ [2mm]
 
           \hline  \srvact{srvact_send_notifications}{}  & Расылка уведомлений. 
           &
             \sr{Сервис рассылает уведомления избранным получателям.}
 
 
-			\sr{Уведомления содержат сообщения индивидуальный для каждого типа получателя. Описание текстов сообщений находятся в таблице \ref{table_notificetion_types}.}
-          \\ [2mm]
+      			\sr{Уведомления содержат сообщения индивидуальный для каждого типа получателя. Описание текстов сообщений находятся в таблице \ref{table_notificetion_types}.}
+            \\ [2mm]
 
 
           \hline
 
           \caption {Действия сервиса}
         \end{longtable}
+
+  \paragraph{Типы уведомлений} \mbox{} \\ \label{}
+
+    \begin{itemize}
+        \item {
+            \sr{Возможные получатели использующиеся в таблице описаны в таблице \ref{table_potential_recipiest}.}
+        }
+        \item 
+    \end{itemize}
+
+    \setlength{\extrarowheight}{2mm}
+    \begin{longtable}{|p{3cm}|p{8cm}|p{4cm}|}
+    \caption {Типы уведомлений}\\
+
+    \hline     \textbf{Тип уведомления}&\textbf{Значения/Сообщение}&\textbf{Получатели} \\ [2mm]
+    \endfirsthead
+    \hline     \textbf{Тип уведомления}&\textbf{Значения/Сообщение}&\textbf{Получатели} \\ [2mm]
+    \endhead
+
+    \hline \crdt{crdt_notification_type_change_order_status}{} Смена статуса заказа  
+
+        & 
+            Если "На месте":
+            \begin{itemize}
+                \item Пассажир - "Водитель прибыл"
+                \item Водитель - "Статус изменен на 'На месте'"
+            \end{itemize}
+
+        &
+            \begin{itemize}
+                \item Пассажир
+                \item Водитель
+            \end{itemize}
+        \\ [2mm]
+
+    \hline Списание с баланса  &  & \\ [2mm]
+
+    % Открепление/Закрепление заказа
+    \hline \crdt{crdt_notification_type_fix_order_and_driver}{} Уведомление о закреплении водителя за заказом.  
+      & "За вами был закреплен заказ + [ID заказа]" 
+      & Водитель 
+      \\ [2mm]
+    \hline \crdt{crdt_notification_type_unfix_order_and_driver}{} Уведомление об откреплении водителя от заказа.  
+      & "С вас был снят заказ заказ + [ID заказа]" 
+      & Водитель
+      \\ [2mm]
+
+    \hline   &  & \\ [2mm]
+    \hline
+
+    \label{table_notificetion_types}
+    \end{longtable}
