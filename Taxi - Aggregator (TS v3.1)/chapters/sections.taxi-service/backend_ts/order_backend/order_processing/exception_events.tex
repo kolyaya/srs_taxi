@@ -1,4 +1,14 @@
-\subparagraph{События-исключения} \label{exception_events}
+\subparagraph{События-исключения} \label{exception_events} \mbox{}\\
+
+	DESC: В любом момент времени выполнения процесса обработки заказа в СТ может произойти событие-исключение, которое прервет основной процесс.
+
+	\begin{itemize}
+		\item {
+			TITLE: Реакция на событие-исключение.\\
+			\sr{При возникновении события основной процесс обработки заказа прерывается, и запускается процесс соответствующий событию-исключению.}\\
+			PRIOR: MODERATE\\
+		}
+	\end{itemize}
 
     \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/exception_events/cancel_order} 
     \input{chapters/sections.taxi-service/backend_ts/order_backend/order_processing/exception_events/change_order_data}
