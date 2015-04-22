@@ -13,8 +13,9 @@
         }
 
         \begin{itemize}
-          \item [ID заказа] (CRDT-\ref{crdt_order_id})
-          \item [Список водителей] (CRDT-\ref{crdt_drivers_list})
+          \item ID заказа
+          \item Список водителей
+          \item Общая (по умолч.)/Индивидуальная(для одного водителя) - опциональный параметр.
         \end{itemize}
 
       \end{itemize}
@@ -86,6 +87,11 @@
           \hline  \srvact{srvact_send_driver_id}{}  & Отправление ID водителя & \sr{} \\ [2mm]
 
           \hline  \srvact{srvact_send_drivers_dont_accept_the_order}{}  & Отправление "drivers don't accept the order" & \sr{} \\ [2mm]
+
+          \hline \srvact{act_offer_driver_updated_order}{} 
+            & Предлагаем водителю обновленный заказ. 
+            & Сервер отправляет уведомление водителю, о том что заказ изменился. Вместе с запросом сервер передает водителю информацию об изменении.
+            \\ [2mm] 
 
 
 

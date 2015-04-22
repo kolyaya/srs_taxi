@@ -27,21 +27,39 @@
 
     \begin{alg}[Процесс обработки изменения данных заказа]\label{edit_order_alg} \mbox{}\\
         \begin{longenum}
+
           \item Если на заказ не назначен водитель, то заказ заново выходит в раздачу (\ref{selection_drivers_for_the_order}).
+
           \item Если на заказ назначен водитель, то сервис:
+
           \begin{longenum}
-            \item Производит фильтрацию для закрепленного за заказом водителя - SRVACT-\ref{act_one_driver_filter}.
+
+            \item Производит фильтрацию для закрепленного за заказом водителя - SRVACT-\ref{srvact_call_filter_service}. Третим параметром передаем [Индивидуальная(для одного водителя)].
+
               \begin{longenum}
+
                 \item Если водитель проходит фильтрацию, то сервис:
+
                   \begin{longenum}
-                   \item Предлагает водителю обновленный заказ. - SRVACT-\ref{act_offer_driver_updated_order}.
+
+                   \item Предлагает водителю обновленный заказ. - SRVACT-\ref{srvact_call_order_offering_service}. В качестве 3-его параметра передает [Индивидуальная(для одного водителя)].
+
                      \begin{longenum}
+
                       \item Если ответ положительный, то водитель продолжает выполнять заказ.
+
                       \item Если ответ отрицательный или не пришел в течении STAT-\ref{timeout_waiting_for_a_response_from_the_driver_request}, то сервис снимает водителя с заказа - Раздел-\ref{remove_driver_from_order}
+
                      \end{longenum}
+
                   \end{longenum}
+
                 \item Если водитель не проходит фильтрацию, то сервис снимает водителя с заказа - Раздел-\ref{remove_driver_from_order}, а затем выполняет первый шаг процесса.
+
               \end{longenum}
+
           \end{longenum}
+
         \end{longenum}
+
       \end{alg}
