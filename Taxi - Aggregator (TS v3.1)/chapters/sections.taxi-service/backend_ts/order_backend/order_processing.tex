@@ -65,12 +65,13 @@
 
 	    % Закрепление заказа
 	    \hline  \srvact{srvact_call_fasten_order_service}{}  
-	    	& Закрепление заказа 
+	    	& Закрепление/Открепление заказа 
     		& \sr{Вызов микросервиса закрепления заказов. (Раздел - \ref{fasten_order_service}) В качестве аргументов передает: 
 
        			\begin{enumerate}
          			\item ID заказа
  					\item ID водителя
+ 					\item Открепить/Закрепить
          		\end{enumerate}} 
     		\\ [2mm]
 
@@ -92,11 +93,6 @@
 	    	& \sr{Вызов микросервиса завершения заказов. (Раздел - \ref{finish_order}) В качестве аргументов передает ID заказа.} 
 	    	\\ [2mm]
 
-
-        \hline \srvact{act_undocking_driver_from_order}{} 
-        	& Открепление водителя. 
-        	& Сервер открепляет водителя от заказа. 
-        	\\ [2mm]
 
         \hline \srvact{act_remove_driver_driver_notification}{} 
         	& Уведомление водителя о снятии.  
