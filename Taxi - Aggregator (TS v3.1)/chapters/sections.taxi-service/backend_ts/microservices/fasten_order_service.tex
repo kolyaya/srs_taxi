@@ -71,32 +71,72 @@
                 \item Если  при выполнении операции возникла ошибка, то сервис отправляет вызывавшему его сервису ответ - [Ошибка при выполнении операции]
               \end{enumerate}
 
-            \item Сервис устанавливает заказу статус "Назначен водитель", вызывая сервис обработки статусов и передавая параметры:
-
-              \begin{enumerate}
-                \item ID заказа
-                \item Статус "Назначен водитель"
-              \end{enumerate}
+            \item Сервис устанавливает заказу статус "Назначен водитель". - SRVACT-\ref{srvact_set_status_fix_driver_for_order}
 
             \item В зависимости от выполняемой операции (п. 1) сервис по средствам вызова сервиса уведомлений:
 
               \begin{enumerate}
-                \item Уведомляет водителя о закреплении за ним заказа. Параметры:
+              
+                \item Уведомляет водителя о закреплении за ним заказа. - SRVACT-\ref{srvact_notify_driver_about_fix_order_for_him}
 
-                  \begin{enumerate}
-                    \item ID водителя
-                    \item Тип уведомления - Уведомление о закреплении водителя за заказом.  - CRDT-\ref{crdt_notification_type_fix_order_and_driver}
-                  \end{enumerate}
-
-                \item Уведомляет водителя об откреплении от него заказа. Параметры:
-
-                  \begin{enumerate}
-                    \item ID водителя
-                    \item Тип уведомления - Уведомление об откреплении водителя от заказа.  - CRDT-\ref{crdt_notification_type_unfix_order_and_driver}
-                  \end{enumerate}
+                \item Уведомляет водителя об откреплении от него заказа. - SRVACT-\ref{srvact_notify_driver_about_unfix_order_for_him}
 
               \end{enumerate}
 
 	        \end{enumerate}
 
         	\end{alg}
+
+        % Действия сервиса
+        \label{}
+        \setlength{\extrarowheight}{2mm}
+        \begin{longtable}{|p{2cm}|p{3cm}|p{10cm}|}
+
+
+          \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+          \endfirsthead
+          \hline  \textbf{ID}  & \textbf{Действие сервиса} & \textbf{Требования} \\ [2mm]
+          \endhead
+
+          \hline \srvact{srvact_set_status_fix_driver_for_order}{} 
+            &  Установка статуса "Назначен водитель"
+
+            & \sr{Сервис вызывает сервис обработки статусов (Раздел \ref{service_order_status_processing}) с параметрами:
+
+              \begin{enumerate}
+                \item ID заказа
+                \item Статус "Назначен водитель"
+              \end{enumerate} }
+
+            \\ [2mm]
+
+          \hline \srvact{srvact_notify_driver_about_fix_order_for_him}{} 
+            &  Уведомление водителя о закреплении за ним заказа.
+
+            &  
+              \sr{Сервис вызывает сервис уведомлений (Раздел \ref{notification_service}) с параметрами: 
+
+                \begin{enumerate}
+                  \item ID водителя
+                  \item Тип уведомления - Уведомление о закреплении водителя за заказом.  - CRDT-\ref{crdt_notification_type_fix_order_and_driver}
+                \end{enumerate} }
+
+            \\ [2mm]
+
+          \hline \srvact{srvact_notify_driver_about_unfix_order_for_him}{} 
+          &  Уведомление водителя об откреплении от него заказа.
+
+          &  
+            \sr{Сервис вызывает сервис уведомлений (Раздел \ref{notification_service}) с параметрами: 
+
+              \begin{enumerate}
+                 \item ID водителя
+                 \item Тип уведомления - Уведомление об откреплении водителя от заказа.  - CRDT-\ref{crdt_notification_type_unfix_order_and_driver}
+              \end{enumerate} }
+
+          \\ [2mm]
+
+          \hline \srvact{srvact_}{} &  &  \\ [2mm]
+
+        \caption {Действия сервиса}
+        \end{longtable}
